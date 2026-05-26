@@ -2,6 +2,7 @@
 
 @section('content')
 
+<!-- Card Dashboard -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
 
     <!-- Jumlah Ayunan -->
@@ -41,6 +42,19 @@
             {{ $latest->status_sensor ?? 'Offline' }}
         </p>
 
+    </div>
+
+</div>
+
+<!-- Chart -->
+<div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+
+    <h2 class="text-2xl font-bold text-blue-700 mb-6">
+        Grafik Periode Bandul
+    </h2>
+
+    <div class="h-96">
+        <canvas id="sensorChart"></canvas>
     </div>
 
 </div>
@@ -105,5 +119,53 @@
     </div>
 
 </div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const ctx = document.getElementById('sensorChart');
+
+    new Chart(ctx, {
+        type: 'line',
+
+        data: {
+            labels: [
+                @foreach ($chartData as $item)
+                    '{{ $item->created_at->format('H:i:s') }}',
+                @endforeach
+            ],
+
+            datasets: [{
+                label: 'Periode Bandul',
+
+                data: [
+                    @foreach ($chartData as $item)
+                        {{ $item->periode }},
+                    @endforeach
+                ],
+
+                borderWidth: 3,
+                tension: 0.4
+            }]
+        },
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+});
+
+</script>
+
+<script>
+
+    setInterval(() => {
+        location.reload();
+    }, 10000);
+
+</script>
 
 @endsection
