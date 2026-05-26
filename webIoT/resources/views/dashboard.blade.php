@@ -38,10 +38,12 @@
             Status Sensor
         </h2>
 
-        <p class="text-2xl font-bold text-green-500 mt-4">
-            {{ $status == 'Online' ? 'text-green-500' : 'text-red-500' }}
-        </p>
+        <p class="text-2xl font-bold mt-4
+        {{ $status == 'Online' ? 'text-green-500' : 'text-red-500' }}">
 
+        {{ $status }}
+
+    </p>
     </div>
 
 </div>

@@ -16,9 +16,10 @@ class DashboardController extends Controller
             ->take(10)
             ->get()
             ->reverse();
+
         $status = 'Offline';
 
-        if ($latest && now()->diffInSeconds($latest->created_at) < 10) {
+        if ($latest && $latest->created_at->diffInSeconds(now()) < 10) {
             $status = 'Online';
         }
         return view('dashboard', compact(
