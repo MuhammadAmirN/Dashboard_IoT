@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sensor_data', function (Blueprint $table) {
-            $table->integer('jumlah_orang');
+            $table->integer('jumlah_ayunan');
             $table->float('periode');
             $table->string('status_sensor');
             $table->timestamps();
