@@ -39,7 +39,7 @@
         </h2>
 
         <p class="text-2xl font-bold text-green-500 mt-4">
-            {{ $latest->status_sensor ?? 'Offline' }}
+            {{ $status == 'Online' ? 'text-green-500' : 'text-red-500' }}
         </p>
 
     </div>
@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <script>
-
+// Auto-refresh setiap 10 detik
     setInterval(() => {
         location.reload();
     }, 10000);
