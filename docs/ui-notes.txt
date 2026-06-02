@@ -1,0 +1,29 @@
+CATATAN UI DASHBOARD WEBIOT
+
+Penanggung jawab utama:
+Zulfa
+
+Halaman yang dikerjakan:
+- Dashboard WebIoT
+- Card jumlah ayunan
+- Card periode
+- Card status sensor
+- Grafik periode bandul
+- Tabel riwayat data sensor
+
+File yang boleh diedit:
+- resources/views/dashboard.blade.php
+- resources/views/layouts/app.blade.php
+- resources/css/app.css
+- resources/js/app.js
+
+Saran perbaikan:
+1. Rapikan jarak antar card.
+2. Buat tabel lebih mudah dibaca.
+3. Pastikan warna status Online dan Offline jelas.
+4. Tambahkan tampilan jika data masih kosong.
+5. Cek tampilan di layar laptop dan layar HP.
+
+Branch yang disarankan:
+
+git checkout -b fitur/ui-dashboard-zulfa

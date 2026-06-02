@@ -7,6 +7,7 @@ CHECKLIST
 
 1. [x] Mengecek konfigurasi Railway agar aplikasi tetap berjalan setelah deploy.
 2. [x] Memastikan environment variable database sudah benar.
+3. [x] Mengecek endpoint API production bisa menerima data sensor.
 
 Yang sudah dicek dan disesuaikan:
 1. URL asset dipaksa memakai HTTPS saat production supaya CSS tidak diblokir browser.
@@ -25,7 +26,7 @@ File utama yang terkait:
 - railway.json
 
 Branch yang dipakai:
-git checkout -b amir
+git checkout -b amir_endpoint_api
 
 Catatan:
 Semua perubahan untuk tugas Amir sebaiknya dikerjakan di branch ini, lalu di-push ke GitHub sebelum merge ke main.
