@@ -97,7 +97,7 @@ git commit -m "memperbaiki tampilan dashboard zulfa"
 JOBDESK RAFLY
 
 Fokus:
-API sensor, validasi data, dan dokumentasi endpoint.
+API sensor, validasi data, dokumentasi endpoint, dan sistem keamanan akses.
 
 Tugas:
 1. Mengecek endpoint POST /api/sensors.
@@ -108,11 +108,13 @@ Tugas:
 3. Membuat response JSON yang lebih lengkap.
 4. Menambahkan endpoint GET sederhana untuk melihat data sensor terbaru jika diperlukan.
 5. Membuat dokumentasi endpoint API.
+6. [NEW] Membuat fitur Login & Register agar dashboard tidak bisa diakses sembarang orang (Authentication).
 
 File/folder yang boleh dikerjakan:
 - routes/api.php
-- app/Http/Controllers/Api/SensorController.php
-- app/Models/SensorData.php
+- routes/web.php
+- app/Http/Controllers/
+- resources/views/auth/
 - docs/api-example.txt
 
 Branch yang disarankan:
