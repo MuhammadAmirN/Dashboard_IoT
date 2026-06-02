@@ -11,23 +11,34 @@ class DashboardController extends Controller
     public function index()
     {
         $latest = SensorData::latest()->first();
-        $datasensor = SensorData::latest()->get();
+        
+        // Data untuk Chart
         $chartData = SensorData::latest()
-            ->take(10)
+            ->take(15)
             ->get()
             ->reverse();
 
-        $status = 'Offline';
+        // Ringkasan per Tali
+        $summary = SensorData::selectRaw('string_length, AVG(periode) as avg_periode, SUM(jumlah_ayunan) as total_ayunan')
+            ->groupBy('string_length')
+            ->get();
 
-        if ($latest && $latest->created_at->diffInSeconds(now()) < 10) {
+        $status = 'Offline';
+        if ($latest && $latest->created_at->diffInSeconds(now()) < 15) {
             $status = 'Online';
         }
+
         return view('dashboard', compact(
             'latest',
-            'datasensor',
             'chartData',
             'status',
+            'summary'
+        ));
+    }
 
-            ));
+    public function history()
+    {
+        $datasensor = SensorData::latest()->paginate(15);
+        return view('history', compact('datasensor'));
     }
 }

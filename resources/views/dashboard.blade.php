@@ -61,59 +61,51 @@
 
 </div>
 
-<!-- Table -->
-<div class="bg-white rounded-2xl shadow-lg p-6">
+<!-- Table Summary Comparison -->
+<div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
 
-    <h2 class="text-2xl font-bold text-blue-700 mb-6">
-        Riwayat Data Sensor
-    </h2>
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-blue-700">
+            Perbandingan Antar Tali
+        </h2>
+        <a href="{{ route('history') }}" class="text-blue-600 hover:underline font-semibold">
+            Lihat Semua Riwayat &rarr;
+        </a>
+    </div>
 
     <div class="overflow-x-auto">
 
         <table class="w-full text-left">
 
             <thead>
-                <tr class="border-b">
-
-                    <th class="py-3">No</th>
-                    <th class="py-3">Jumlah Ayunan</th>
-                    <th class="py-3">Periode</th>
-                    <th class="py-3">Status</th>
-                    <th class="py-3">Waktu</th>
-
+                <tr class="border-b text-gray-600">
+                    <th class="py-3 px-4">Panjang Tali</th>
+                    <th class="py-3 px-4">Rata-rata Periode</th>
+                    <th class="py-3 px-4">Total Ayunan</th>
                 </tr>
             </thead>
 
             <tbody>
-
-                @foreach ($datasensor as $item)
-
+                @foreach ($summary as $item)
                 <tr class="border-b hover:bg-blue-50 transition">
-
-                    <td class="py-3">
-                        {{ $loop->iteration }}
+                    <td class="py-4 px-4">
+                        <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-bold text-sm">
+                            {{ $item->string_length ?? 'Default' }}
+                        </span>
                     </td>
-
-                    <td class="py-3">
-                        {{ $item->jumlah_ayunan }}
+                    <td class="py-4 px-4 font-semibold text-gray-700">
+                        {{ number_format($item->avg_periode, 2) }} s
                     </td>
-
-                    <td class="py-3">
-                        {{ $item->periode }} s
+                    <td class="py-4 px-4 font-semibold text-gray-700">
+                        {{ $item->total_ayunan }}
                     </td>
-
-                    <td class="py-3">
-                        {{ $item->status_sensor }}
-                    </td>
-
-                    <td class="py-3">
-                        {{ $item->created_at }}
-                    </td>
-
                 </tr>
-
                 @endforeach
-
+                @if($summary->isEmpty())
+                <tr>
+                    <td colspan="3" class="py-8 text-center text-gray-400 italic">Belum ada data perbandingan tali.</td>
+                </tr>
+                @endif
             </tbody>
 
         </table>
