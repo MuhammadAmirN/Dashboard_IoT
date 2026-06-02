@@ -1,0 +1,179 @@
+JOBDESK TEAM PROJECT WEBIOT
+
+Tujuan:
+Membagi tugas tim agar kontribusi setiap anggota terlihat di Git graph dan tidak saling menimpa perubahan saat push.
+
+Anggota:
+1. Amir
+2. Zulfa
+3. Rafly
+
+
+ATURAN WAJIB SEBELUM MULAI
+
+1. Ambil update terbaru dari branch utama.
+
+   git pull origin main
+
+2. Buat branch sendiri sesuai nama dan tugas.
+
+   git checkout -b fitur/nama-tugas-nama
+
+3. Jangan push langsung ke main.
+
+4. Setelah selesai, commit dan push branch masing-masing.
+
+   git add .
+   git commit -m "menambahkan tugas nama"
+   git push origin fitur/nama-tugas-nama
+
+5. Setelah push, buat Pull Request atau minta ketua project merge ke main.
+
+
+CONTOH NAMA BRANCH
+
+Amir:
+git checkout -b fitur/deploy-database-amir
+
+Zulfa:
+git checkout -b fitur/ui-dashboard-zulfa
+
+Rafly:
+git checkout -b fitur/api-dokumentasi-rafly
+
+
+JOBDESK AMIR
+
+Fokus:
+Deployment, database Railway, dan pengecekan integrasi aplikasi.
+
+Tugas:
+1. Mengecek konfigurasi Railway agar aplikasi tetap berjalan setelah deploy.
+2. Memastikan environment variable database sudah benar.
+3. [DONE] Mengecek endpoint API production bisa menerima data sensor. (Sudah dites oleh Amir, endpoint berjalan lancar)
+4. Menambahkan catatan cara deploy ke dokumentasi.
+5. Membuat contoh request API untuk testing.
+
+File/folder yang boleh dikerjakan:
+- railway.json
+- README.md
+- docs/deployment.txt
+- docs/api-example.txt
+
+Branch yang disarankan:
+git checkout -b fitur/deploy-database-amir
+
+Contoh commit:
+git commit -m "menambahkan dokumentasi deploy dan api amir"
+
+
+JOBDESK ZULFA
+
+Fokus:
+Tampilan dashboard dan UI/UX halaman WebIoT.
+
+Tugas:
+1. Merapikan tampilan card jumlah ayunan, periode, dan status sensor.
+2. Merapikan tabel riwayat data sensor.
+3. Menyesuaikan warna, spacing, dan ukuran teks agar lebih mudah dibaca.
+4. Membuat tampilan responsive untuk layar kecil.
+5. Menambahkan empty state jika data sensor belum ada.
+
+File/folder yang boleh dikerjakan:
+- resources/views/dashboard.blade.php
+- resources/views/layouts/app.blade.php
+- resources/css/app.css
+- resources/js/app.js
+
+Branch yang disarankan:
+git checkout -b fitur/ui-dashboard-zulfa
+
+Contoh commit:
+git commit -m "memperbaiki tampilan dashboard zulfa"
+
+
+JOBDESK RAFLY
+
+Fokus:
+API sensor, validasi data, dan dokumentasi endpoint.
+
+Tugas:
+1. Mengecek endpoint POST /api/sensors.
+2. Menambahkan validasi tipe data:
+   - jumlah_ayunan harus angka/integer
+   - periode harus angka
+   - status_sensor harus string
+3. Membuat response JSON yang lebih lengkap.
+4. Menambahkan endpoint GET sederhana untuk melihat data sensor terbaru jika diperlukan.
+5. Membuat dokumentasi endpoint API.
+
+File/folder yang boleh dikerjakan:
+- routes/api.php
+- app/Http/Controllers/Api/SensorController.php
+- app/Models/SensorData.php
+- docs/api-example.txt
+
+Branch yang disarankan:
+git checkout -b fitur/api-sensor-rafly
+
+Contoh commit:
+git commit -m "menambahkan validasi api sensor rafly"
+
+
+FOLDER DOKUMENTASI YANG BOLEH DIBUAT
+
+docs/
+docs/deployment.txt
+docs/api-example.txt
+docs/jobdesk-team.txt
+
+
+FILE DAN FOLDER YANG JANGAN DI-PUSH
+
+Jangan push file/folder berikut:
+- .env
+- vendor/
+- node_modules/
+- public/build/
+- storage/logs/
+
+Biasanya file tersebut sudah masuk .gitignore, tetapi tetap harus dicek sebelum commit.
+
+
+ALUR KERJA SETIAP ANGGOTA
+
+1. Buka terminal di folder project.
+
+   cd C:\.s6peminatan\webiot
+
+2. Ambil update terbaru.
+
+   git pull origin main
+
+3. Buat branch sesuai tugas.
+
+   git checkout -b fitur/nama-tugas-nama
+
+4. Kerjakan file sesuai jobdesk.
+
+5. Cek perubahan.
+
+   git status
+
+6. Commit.
+
+   git add .
+   git commit -m "pesan commit"
+
+7. Push branch.
+
+   git push origin fitur/nama-tugas-nama
+
+
+CATATAN PENTING
+
+Jika ada conflict saat pull atau merge, jangan asal hapus kode.
+Tanyakan dulu ke anggota yang mengerjakan file tersebut.
+
+Jangan mengubah file di luar jobdesk kecuali sudah disepakati.
+Tujuannya agar Git graph rapi dan perubahan setiap orang terlihat jelas.
