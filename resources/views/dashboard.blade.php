@@ -72,6 +72,29 @@
 
 </div>
 
+<!-- Alat & Komponen -->
+<div class="bg-white p-6 rounded-2xl shadow-lg mb-8 text-center">
+    <h2 class="text-2xl font-bold text-blue-700 mb-6">Alat & Komponen yang Digunakan</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="p-4 border border-blue-100 rounded-xl bg-blue-50">
+            <p class="font-bold text-blue-800">ESP32 / NodeMCU</p>
+            <p class="text-xs text-gray-500">Otak Utama & WiFi</p>
+        </div>
+        <div class="p-4 border border-blue-100 rounded-xl bg-blue-50">
+            <p class="font-bold text-blue-800">Sensor FC-51</p>
+            <p class="text-xs text-gray-500">Deteksi Ayunan (IR)</p>
+        </div>
+        <div class="p-4 border border-blue-100 rounded-xl bg-blue-50">
+            <p class="font-bold text-blue-800">Bandul Matematis</p>
+            <p class="text-xs text-gray-500">Objek Percobaan</p>
+        </div>
+        <div class="p-4 border border-blue-100 rounded-xl bg-blue-50">
+            <p class="font-bold text-blue-800">Kabel Jumper</p>
+            <p class="text-xs text-gray-500">Koneksi Rangkaian</p>
+        </div>
+    </div>
+</div>
+
 <!-- Table Summary Comparison -->
 <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
 
