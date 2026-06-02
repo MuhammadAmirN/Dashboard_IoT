@@ -1,0 +1,20 @@
+TUGAS AMIR
+
+Fokus:
+Mengecek konfigurasi Railway agar aplikasi tetap berjalan setelah deploy.
+
+Yang sudah dicek dan disesuaikan:
+1. URL asset dipaksa memakai HTTPS saat production supaya CSS tidak diblokir browser.
+2. Railway build command disesuaikan agar lebih stabil di Railpack.
+3. Start command disiapkan agar aplikasi berjalan dengan port yang dipakai Railway.
+4. Database production diarahkan ke MySQL Railway agar data sensor tidak hilang saat redeploy.
+
+File utama yang terkait:
+- app/Providers/AppServiceProvider.php
+- railway.json
+
+Branch yang dipakai:
+git checkout -b amir
+
+Catatan:
+Semua perubahan untuk tugas Amir sebaiknya dikerjakan di branch ini, lalu di-push ke GitHub sebelum merge ke main.
