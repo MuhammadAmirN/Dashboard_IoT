@@ -21,11 +21,11 @@
 
             <nav class="mt-6">
 
-                <a href="#" class="flex items-center px-6 py-3 bg-blue-700">
+                <a href="{{ route('dashboard') }}" class="flex items-center px-6 py-3 {{ request()->routeIs('dashboard') ? 'bg-blue-700' : 'hover:bg-blue-500' }} transition">
                     Dashboard
                 </a>
 
-                <a href="#" class="flex items-center px-6 py-3 hover:bg-blue-500 transition">
+                <a href="{{ route('history') }}" class="flex items-center px-6 py-3 {{ request()->routeIs('history') ? 'bg-blue-700' : 'hover:bg-blue-500' }} transition">
                     Data Sensor
                 </a>
 
