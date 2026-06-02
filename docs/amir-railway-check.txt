@@ -3,11 +3,22 @@ TUGAS AMIR
 Fokus:
 Mengecek konfigurasi Railway agar aplikasi tetap berjalan setelah deploy.
 
+CHECKLIST
+
+1. [x] Mengecek konfigurasi Railway agar aplikasi tetap berjalan setelah deploy.
+2. [x] Memastikan environment variable database sudah benar.
+
 Yang sudah dicek dan disesuaikan:
 1. URL asset dipaksa memakai HTTPS saat production supaya CSS tidak diblokir browser.
 2. Railway build command disesuaikan agar lebih stabil di Railpack.
 3. Start command disiapkan agar aplikasi berjalan dengan port yang dipakai Railway.
 4. Database production diarahkan ke MySQL Railway agar data sensor tidak hilang saat redeploy.
+5. Environment variable database untuk service WebIoT sudah mengarah ke MySQL Railway:
+   - DB_CONNECTION=mysql
+   - DB_HOST=mysql.railway.internal
+   - DB_PORT=3306
+   - DB_DATABASE=railway
+   - DB_USERNAME=root
 
 File utama yang terkait:
 - app/Providers/AppServiceProvider.php
@@ -18,3 +29,6 @@ git checkout -b amir
 
 Catatan:
 Semua perubahan untuk tugas Amir sebaiknya dikerjakan di branch ini, lalu di-push ke GitHub sebelum merge ke main.
+
+Pemberitahuan ke tim:
+Konfigurasi environment variable database di Railway sudah dicek dan sudah benar. Silakan lanjut kerja di branch masing-masing, jangan push ke main.
