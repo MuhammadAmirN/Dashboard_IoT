@@ -112,6 +112,7 @@ Tugas:
 4. Menambahkan endpoint GET sederhana untuk melihat data sensor terbaru jika diperlukan.
 5. Membuat dokumentasi endpoint API.
 6. [NEW] Membuat fitur Login & Register agar dashboard tidak bisa diakses sembarang orang (Authentication).
+7. [RESEARCH] Implementasi Real-time Update menggunakan WebSocket (Pusher atau Laravel Reverb) agar dashboard update otomatis tanpa perlu refresh halaman (Saran Dosen).
 
 File/folder yang boleh dikerjakan:
 - routes/api.php
