@@ -1,5 +1,8 @@
 JOBDESK TEAM PROJECT WEBIOT
 
+"Proyek ini pakai TailwindCSS dengan tema Modern-Blue. Semua elemen UI harus pakai sudut bulat besar (rounded-2xl), shadow yang halus (shadow-lg), dan warna biru tailwind
+  (bg-blue-600) sebagai warna utama."
+  
 Tujuan:
 Membagi tugas tim agar kontribusi setiap anggota terlihat di Git graph dan tidak saling menimpa perubahan saat push.
 

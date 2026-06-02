@@ -91,8 +91,9 @@
             <thead>
                 <tr class="border-b text-gray-600">
                     <th class="py-3 px-4">Panjang Tali</th>
-                    <th class="py-3 px-4">Rata-rata Periode</th>
-                    <th class="py-3 px-4">Total Ayunan</th>
+                    <th class="py-3 px-4 text-center">Waktu (10 Ayunan)</th>
+                    <th class="py-3 px-4 text-center">Waktu Rata-rata</th>
+                    <th class="py-3 px-4 text-center">Periode (T)</th>
                 </tr>
             </thead>
 
@@ -100,21 +101,26 @@
                 @foreach ($summary as $item)
                 <tr class="border-b hover:bg-blue-50 transition">
                     <td class="py-4 px-4">
-                        <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-bold text-sm">
+                        <span class="px-4 py-2 bg-blue-600 text-white rounded-lg font-bold text-sm shadow-sm">
                             {{ $item->string_length ?? 'Default' }}
                         </span>
                     </td>
-                    <td class="py-4 px-4 font-semibold text-gray-700">
-                        {{ number_format($item->avg_periode, 2) }} s
+                    <td class="py-4 px-4 text-center font-semibold text-gray-700">
+                        {{ number_format($item->avg_periode * 10, 2) }} s
                     </td>
-                    <td class="py-4 px-4 font-semibold text-gray-700">
-                        {{ $item->total_ayunan }}
+                    <td class="py-4 px-4 text-center font-semibold text-gray-700">
+                        {{ number_format($item->avg_periode, 3) }} s
+                    </td>
+                    <td class="py-4 px-4 text-center">
+                        <span class="text-blue-600 font-bold">
+                            {{ number_format($item->avg_periode, 2) }} t/detik
+                        </span>
                     </td>
                 </tr>
                 @endforeach
                 @if($summary->isEmpty())
                 <tr>
-                    <td colspan="3" class="py-8 text-center text-gray-400 italic">Belum ada data perbandingan tali.</td>
+                    <td colspan="4" class="py-8 text-center text-gray-400 italic">Belum ada data perbandingan tali.</td>
                 </tr>
                 @endif
             </tbody>
