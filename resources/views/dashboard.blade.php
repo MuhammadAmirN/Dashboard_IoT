@@ -48,6 +48,17 @@
 
 </div>
 
+<!-- Pemilihan Panjang Tali -->
+<div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+    <h2 class="text-xl font-bold text-gray-700 mb-4">Pilih Panjang Tali (Aktif)</h2>
+    <div class="flex flex-wrap gap-4">
+        <button class="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition shadow-md focus:ring-4 focus:ring-blue-300 font-bold text-sm">Tali A</button>
+        <button class="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition shadow-md focus:ring-4 focus:ring-blue-300 font-bold text-sm">Tali B</button>
+        <button class="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition shadow-md focus:ring-4 focus:ring-blue-300 font-bold text-sm">Tali C</button>
+    </div>
+    <p class="mt-4 text-sm text-gray-500 italic">*Data sensor yang masuk akan ditandai dengan label tali yang dipilih.</p>
+</div>
+
 <!-- Chart -->
 <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
 
@@ -61,59 +72,57 @@
 
 </div>
 
-<!-- Table -->
-<div class="bg-white rounded-2xl shadow-lg p-6">
+<!-- Table Summary Comparison -->
+<div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
 
-    <h2 class="text-2xl font-bold text-blue-700 mb-6">
-        Riwayat Data Sensor
-    </h2>
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-blue-700">
+            Perbandingan Antar Tali
+        </h2>
+        <a href="{{ route('history') }}" class="text-blue-600 hover:underline font-semibold">
+            Lihat Semua Riwayat &rarr;
+        </a>
+    </div>
 
     <div class="overflow-x-auto">
 
         <table class="w-full text-left">
 
             <thead>
-                <tr class="border-b">
-
-                    <th class="py-3">No</th>
-                    <th class="py-3">Jumlah Ayunan</th>
-                    <th class="py-3">Periode</th>
-                    <th class="py-3">Status</th>
-                    <th class="py-3">Waktu</th>
-
+                <tr class="border-b text-gray-600">
+                    <th class="py-3 px-4">Panjang Tali</th>
+                    <th class="py-3 px-4 text-center">Waktu (10 Ayunan)</th>
+                    <th class="py-3 px-4 text-center">Waktu Rata-rata</th>
+                    <th class="py-3 px-4 text-center">Periode (T)</th>
                 </tr>
             </thead>
 
             <tbody>
-
-                @foreach ($datasensor as $item)
-
+                @foreach ($summary as $item)
                 <tr class="border-b hover:bg-blue-50 transition">
-
-                    <td class="py-3">
-                        {{ $loop->iteration }}
+                    <td class="py-4 px-4">
+                        <span class="px-4 py-2 bg-blue-600 text-white rounded-lg font-bold text-sm shadow-sm">
+                            {{ $item->string_length ?? 'Default' }}
+                        </span>
                     </td>
-
-                    <td class="py-3">
-                        {{ $item->jumlah_ayunan }}
+                    <td class="py-4 px-4 text-center font-semibold text-gray-700">
+                        {{ number_format($item->avg_periode * 10, 2) }} s
                     </td>
-
-                    <td class="py-3">
-                        {{ $item->periode }} s
+                    <td class="py-4 px-4 text-center font-semibold text-gray-700">
+                        {{ number_format($item->avg_periode, 3) }} s
                     </td>
-
-                    <td class="py-3">
-                        {{ $item->status_sensor }}
+                    <td class="py-4 px-4 text-center">
+                        <span class="text-blue-600 font-bold">
+                            {{ number_format($item->avg_periode, 2) }} t/detik
+                        </span>
                     </td>
-
-                    <td class="py-3">
-                        {{ $item->created_at }}
-                    </td>
-
                 </tr>
-
                 @endforeach
-
+                @if($summary->isEmpty())
+                <tr>
+                    <td colspan="4" class="py-8 text-center text-gray-400 italic">Belum ada data perbandingan tali.</td>
+                </tr>
+                @endif
             </tbody>
 
         </table>
@@ -148,13 +157,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
 
                 borderWidth: 3,
-                tension: 0.4
+                borderColor: 'rgba(59, 130, 246, 1)', // Biru Tailwind
+                backgroundColor: 'rgba(59, 130, 246, 0.2)', // Transparan untuk efek gelombang
+                fill: true,
+                tension: 0.4,
+                pointRadius: 4,
+                pointBackgroundColor: 'rgba(59, 130, 246, 1)'
             }]
         },
 
         options: {
             responsive: true,
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
     });
 

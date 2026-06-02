@@ -1,0 +1,186 @@
+JOBDESK TEAM PROJECT WEBIOT
+
+"Proyek ini pakai TailwindCSS dengan tema Modern-Blue. Semua elemen UI harus pakai sudut bulat besar (rounded-2xl), shadow yang halus (shadow-lg), dan warna biru tailwind
+  (bg-blue-600) sebagai warna utama."
+  
+Tujuan:
+Membagi tugas tim agar kontribusi setiap anggota terlihat di Git graph dan tidak saling menimpa perubahan saat push.
+
+Anggota:
+1. Amir
+2. Zulfa
+3. Rafly
+
+
+ATURAN WAJIB SEBELUM MULAI
+
+1. Ambil update terbaru dari branch utama.
+
+   git pull origin main
+
+2. Buat branch sendiri sesuai nama dan tugas.
+
+   git checkout -b fitur/nama-tugas-nama
+
+3. Jangan push langsung ke main.
+
+4. Setelah selesai, commit dan push branch masing-masing.
+
+   git add .
+   git commit -m "menambahkan tugas nama"
+   git push origin fitur/nama-tugas-nama
+
+5. Setelah push, buat Pull Request atau minta ketua project merge ke main.
+
+
+CONTOH NAMA BRANCH
+
+Amir:
+git checkout -b amir-deploy-database
+
+Zulfa:
+git checkout -b zulfa-ui-dashboard
+
+Amir:
+git checkout -b amir-perbaikan-fitur
+
+
+JOBDESK AMIR
+
+Fokus:
+Deployment, database Railway, perbaikan fitur grafik, dan pengecekan integrasi aplikasi.
+
+Tugas:
+1. [DONE] Mengecek konfigurasi Railway agar aplikasi tetap berjalan setelah deploy.
+2. [DONE] Memastikan environment variable database sudah benar.
+3. [DONE] Mengecek endpoint API production bisa menerima data sensor.
+4. [DONE] Menambahkan catatan cara deploy ke dokumentasi.
+5. [DONE] Membuat contoh request API untuk testing.
+6. [DONE] Mengubah grafik periode menjadi grafik gelombang (smooth wave chart).
+
+File/folder yang boleh dikerjakan:
+- resources/views/dashboard.blade.php
+- railway.json
+- README.md
+- docs/deployment.txt
+- docs/api-example.txt
+
+Branch yang disarankan:
+git checkout -b amir-perbaikan-fitur
+
+Contoh commit:
+git commit -m "amir: memperbaiki tampilan grafik menjadi gelombang"
+
+
+JOBDESK ZULFA
+
+Fokus:
+Tampilan dashboard dan UI/UX halaman WebIoT.
+
+Tugas (Tugas 1):
+1. Merapikan tampilan card jumlah ayunan, periode, dan status sensor.
+2. Merapikan tabel riwayat data sensor.
+3. Menyesuaikan warna, spacing, dan ukuran teks agar lebih mudah dibaca.
+4. Membuat tampilan responsive untuk layar kecil.
+5. Menambahkan empty state jika data sensor belum ada.
+
+File/folder yang boleh dikerjakan:
+- resources/views/dashboard.blade.php
+- resources/views/layouts/app.blade.php
+- resources/css/app.css
+- resources/js/app.js
+
+Branch yang disarankan:
+git checkout -b zulfa-ui-dashboard
+
+Contoh commit:
+git commit -m "memperbaiki tampilan dashboard zulfa"
+
+
+JOBDESK RAFLY
+
+Fokus:
+API sensor, validasi data, dokumentasi endpoint, dan sistem keamanan akses.
+
+Tugas:
+1. Mengecek endpoint POST /api/sensors.
+2. Menambahkan validasi tipe data:
+   - jumlah_ayunan harus angka/integer
+   - periode harus angka
+   - status_sensor harus string
+3. Membuat response JSON yang lebih lengkap.
+4. Menambahkan endpoint GET sederhana untuk melihat data sensor terbaru jika diperlukan.
+5. Membuat dokumentasi endpoint API.
+6. [NEW] Membuat fitur Login & Register agar dashboard tidak bisa diakses sembarang orang (Authentication).
+
+File/folder yang boleh dikerjakan:
+- routes/api.php
+- routes/web.php
+- app/Http/Controllers/
+- resources/views/auth/
+- docs/api-example.txt
+
+Branch yang disarankan:
+git checkout -b rafly-api-sensor
+
+Contoh commit:
+git commit -m "menambahkan validasi api sensor rafly"
+
+
+FOLDER DOKUMENTASI YANG BOLEH DIBUAT
+
+docs/
+docs/deployment.txt
+docs/api-example.txt
+docs/jobdesk-team.txt
+
+
+FILE DAN FOLDER YANG JANGAN DI-PUSH
+
+Jangan push file/folder berikut:
+- .env
+- vendor/
+- node_modules/
+- public/build/
+- storage/logs/
+
+Biasanya file tersebut sudah masuk .gitignore, tetapi tetap harus dicek sebelum commit.
+
+
+ALUR KERJA SETIAP ANGGOTA
+
+1. Buka terminal di folder project.
+
+   cd C:\.s6peminatan\webiot
+
+2. Ambil update terbaru.
+
+   git pull origin main
+
+3. Buat branch sesuai tugas.
+
+   git checkout -b fitur/nama-tugas-nama
+
+4. Kerjakan file sesuai jobdesk.
+
+5. Cek perubahan.
+
+   git status
+
+6. Commit.
+
+   git add .
+   git commit -m "pesan commit"
+
+7. Push branch.
+
+   git push origin fitur/nama-tugas-nama
+
+
+CATATAN PENTING
+
+Jika ada conflict saat pull atau merge, jangan asal hapus kode.
+Tanyakan dulu ke anggota yang mengerjakan file tersebut.
+
+Jangan mengubah file di luar jobdesk kecuali sudah disepakati.
+Tujuannya agar Git graph rapi dan perubahan setiap orang terlihat jelas.

@@ -21,6 +21,7 @@ class SensorController extends Controller
             'jumlah_ayunan' => $request->jumlah_ayunan,
             'periode' => $request->periode,
             'status_sensor' => $request->status_sensor,
+            'string_length' => $request->string_length ?? 'Default',
         ]);
 
         return response()->json([
