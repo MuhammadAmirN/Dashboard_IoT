@@ -182,11 +182,12 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <script>
-// Auto-refresh setiap 10 detik
+// Auto-refresh dimatikan sementara untuk transisi ke Real-time
+/*
     setInterval(() => {
         location.reload();
     }, 10000);
-
+*/
 </script>
 
 @endsection
