@@ -51,8 +51,8 @@ Tugas:
 1. Mengecek konfigurasi Railway agar aplikasi tetap berjalan setelah deploy.
 2. Memastikan environment variable database sudah benar.
 3. [DONE] Mengecek endpoint API production bisa menerima data sensor. (Sudah dites oleh Amir, endpoint berjalan lancar)
-4. Menambahkan catatan cara deploy ke dokumentasi.
-5. Membuat contoh request API untuk testing.
+4. [DONE] Menambahkan catatan cara deploy ke dokumentasi.
+5. [DONE] Membuat contoh request API untuk testing.
 
 File/folder yang boleh dikerjakan:
 - railway.json

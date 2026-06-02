@@ -1,0 +1,36 @@
+CATATAN DEPLOYMENT WEBIOT
+
+Penanggung jawab utama:
+Amir
+
+Ringkasan:
+Project WebIoT dideploy ke Railway menggunakan service WebIoT dan database MySQL.
+
+URL production:
+https://webiot-production.up.railway.app
+
+Langkah-langkah Deploy ke Railway:
+1. Pastikan semua perubahan sudah di-commit ke branch Anda.
+2. Login ke Railway CLI di terminal:
+   `railway login`
+3. Hubungkan project lokal ke Railway (jika belum):
+   `railway link`
+4. Deploy ke service yang dituju:
+   `railway up`
+5. Jika ada perubahan database, jalankan migrasi di Railway (Opsional):
+   `railway run php artisan migrate --force`
+
+Hal yang perlu dicek sebelum deploy:
+1. Aplikasi sudah berjalan lokal.
+2. File .env tidak ikut di-commit (gunakan Variables di Dashboard Railway).
+3. railway.json sudah sesuai.
+4. Variable database di Railway sudah diarahkan ke MySQL (DB_CONNECTION, DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD).
+5. Branch sudah dibuat sebelum melakukan perubahan.
+
+Command umum:
+git pull origin main
+git checkout -b fitur/deploy-database-amir
+railway up --service WebIoT
+
+Catatan:
+Jika deploy gagal, cek Build Logs dan Deploy Logs di Dashboard Railway untuk melihat pesan error yang spesifik.

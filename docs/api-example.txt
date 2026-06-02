@@ -1,0 +1,43 @@
+CONTOH API WEBIOT
+
+Penanggung jawab utama:
+Rafly & Amir (Testing)
+
+Endpoint untuk mengirim data sensor:
+
+POST https://webiot-production.up.railway.app/api/sensors
+
+Header:
+Content-Type: application/json
+
+Body JSON:
+{
+  "jumlah_ayunan": 10,
+  "periode": 2.3,
+  "status_sensor": "Online"
+}
+
+Contoh Request Testing menggunakan cURL:
+curl -X POST https://webiot-production.up.railway.app/api/sensors \
+     -H "Content-Type: application/json" \
+     -d "{\"jumlah_ayunan\": 15, \"periode\": 1.8, \"status_sensor\": \"Testing\"}"
+
+Response sukses:
+{
+  "message": "Data sensor berhasil disimpan"
+}
+
+Contoh Response Error (Validasi Gagal):
+{
+  "message": "The jumlah ayunan field is required.",
+  "errors": {
+    "jumlah_ayunan": [
+      "The jumlah ayunan field is required."
+    ]
+  }
+}
+
+Catatan:
+Gunakan URL production jika ingin data tampil di website Railway.
+Jika menggunakan localhost, gunakan: http://localhost:8000/api/sensors
+Data yang dikirim harus sesuai dengan tipe data yang diharapkan (integer untuk jumlah_ayunan, float untuk periode).
