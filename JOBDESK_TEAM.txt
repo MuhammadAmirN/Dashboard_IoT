@@ -33,38 +33,40 @@ ATURAN WAJIB SEBELUM MULAI
 CONTOH NAMA BRANCH
 
 Amir:
-git checkout -b fitur/deploy-database-amir
+git checkout -b amir-deploy-database
 
 Zulfa:
-git checkout -b fitur/ui-dashboard-zulfa
+git checkout -b zulfa-ui-dashboard
 
-Rafly:
-git checkout -b fitur/api-dokumentasi-rafly
+Amir:
+git checkout -b amir-perbaikan-fitur
 
 
 JOBDESK AMIR
 
 Fokus:
-Deployment, database Railway, dan pengecekan integrasi aplikasi.
+Deployment, database Railway, perbaikan fitur grafik, dan pengecekan integrasi aplikasi.
 
 Tugas:
-1. Mengecek konfigurasi Railway agar aplikasi tetap berjalan setelah deploy.
-2. Memastikan environment variable database sudah benar.
-3. [DONE] Mengecek endpoint API production bisa menerima data sensor. (Sudah dites oleh Amir, endpoint berjalan lancar)
+1. [DONE] Mengecek konfigurasi Railway agar aplikasi tetap berjalan setelah deploy.
+2. [DONE] Memastikan environment variable database sudah benar.
+3. [DONE] Mengecek endpoint API production bisa menerima data sensor.
 4. [DONE] Menambahkan catatan cara deploy ke dokumentasi.
 5. [DONE] Membuat contoh request API untuk testing.
+6. [DONE] Mengubah grafik periode menjadi grafik gelombang (smooth wave chart).
 
 File/folder yang boleh dikerjakan:
+- resources/views/dashboard.blade.php
 - railway.json
 - README.md
 - docs/deployment.txt
 - docs/api-example.txt
 
 Branch yang disarankan:
-git checkout -b fitur/deploy-database-amir
+git checkout -b amir-perbaikan-fitur
 
 Contoh commit:
-git commit -m "menambahkan dokumentasi deploy dan api amir"
+git commit -m "amir: memperbaiki tampilan grafik menjadi gelombang"
 
 
 JOBDESK ZULFA
@@ -72,7 +74,7 @@ JOBDESK ZULFA
 Fokus:
 Tampilan dashboard dan UI/UX halaman WebIoT.
 
-Tugas:
+Tugas (Tugas 1):
 1. Merapikan tampilan card jumlah ayunan, periode, dan status sensor.
 2. Merapikan tabel riwayat data sensor.
 3. Menyesuaikan warna, spacing, dan ukuran teks agar lebih mudah dibaca.
@@ -86,7 +88,7 @@ File/folder yang boleh dikerjakan:
 - resources/js/app.js
 
 Branch yang disarankan:
-git checkout -b fitur/ui-dashboard-zulfa
+git checkout -b zulfa-ui-dashboard
 
 Contoh commit:
 git commit -m "memperbaiki tampilan dashboard zulfa"
@@ -114,7 +116,7 @@ File/folder yang boleh dikerjakan:
 - docs/api-example.txt
 
 Branch yang disarankan:
-git checkout -b fitur/api-sensor-rafly
+git checkout -b rafly-api-sensor
 
 Contoh commit:
 git commit -m "menambahkan validasi api sensor rafly"

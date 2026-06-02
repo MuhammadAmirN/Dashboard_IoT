@@ -148,13 +148,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
 
                 borderWidth: 3,
-                tension: 0.4
+                borderColor: 'rgba(59, 130, 246, 1)', // Biru Tailwind
+                backgroundColor: 'rgba(59, 130, 246, 0.2)', // Transparan untuk efek gelombang
+                fill: true,
+                tension: 0.4,
+                pointRadius: 4,
+                pointBackgroundColor: 'rgba(59, 130, 246, 1)'
             }]
         },
 
         options: {
             responsive: true,
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
     });
 
