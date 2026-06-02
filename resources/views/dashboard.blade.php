@@ -52,9 +52,9 @@
 <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
     <h2 class="text-xl font-bold text-gray-700 mb-4">Pilih Panjang Tali (Aktif)</h2>
     <div class="flex flex-wrap gap-4">
-        <button class="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition shadow-md focus:ring-4 focus:ring-blue-300">Tali A</button>
-        <button class="px-6 py-2 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition shadow-sm focus:ring-4 focus:ring-gray-300">Tali B</button>
-        <button class="px-6 py-2 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition shadow-sm focus:ring-4 focus:ring-gray-300">Tali C</button>
+        <button class="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition shadow-md focus:ring-4 focus:ring-blue-300 font-bold text-sm">Tali A</button>
+        <button class="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition shadow-md focus:ring-4 focus:ring-blue-300 font-bold text-sm">Tali B</button>
+        <button class="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition shadow-md focus:ring-4 focus:ring-blue-300 font-bold text-sm">Tali C</button>
     </div>
     <p class="mt-4 text-sm text-gray-500 italic">*Data sensor yang masuk akan ditandai dengan label tali yang dipilih.</p>
 </div>
