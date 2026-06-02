@@ -11,5 +11,6 @@ class SensorData extends Model
         'jumlah_ayunan',
         'periode',
         'status_sensor',
+        'string_length',
     ];
 }
