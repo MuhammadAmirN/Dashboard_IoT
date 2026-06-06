@@ -45,6 +45,13 @@
                         Data Sensor
                     </div>
                 </a>
+
+                <a href="{{ route('baca-data') }}" class="flex items-center px-4 py-3 {{ request()->routeIs('baca-data') ? 'bg-gray-100 dark:bg-white text-black font-semibold rounded-full shadow-sm' : 'hover:bg-gray-50 dark:hover:bg-white/10 dark:hover:text-white rounded-full transition' }}">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                        Baca Data
+                    </div>
+                </a>
             </nav>
         </div>
     </aside>

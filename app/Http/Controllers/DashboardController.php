@@ -78,4 +78,26 @@ class DashboardController extends Controller
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pdf.sensor_history', compact('datasensor'));
         return $pdf->download('Data-Sensor-'.now()->format('Y-md-His').'.pdf');
     }
+
+    public function bacaData()
+    {
+        // Ambil daftar session unik dari tabel sensor_logs
+        // Menggunakan groupBy pada DB driver tertentu (seperti strict mode) mungkin butuh trik
+        // Kita bisa ambil distinct session_id
+        $sessions = SensorLog::select('session_id', \DB::raw('MIN(created_at) as started_at'), \DB::raw('COUNT(*) as total_data'))
+            ->groupBy('session_id')
+            ->orderBy('started_at', 'desc')
+            ->get();
+
+        return view('baca_data', compact('sessions'));
+    }
+
+    public function getSensorLogs($session_id)
+    {
+        $logs = SensorLog::where('session_id', $session_id)
+            ->orderBy('waktu_ms', 'asc')
+            ->get();
+            
+        return response()->json($logs);
+    }
 }

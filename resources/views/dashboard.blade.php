@@ -166,9 +166,14 @@
                 <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                 Visualisasi Pergerakan Bandul (Simpangan)
             </div>
-            <div class="bg-gray-100 dark:bg-white/10 px-4 py-2 rounded-full text-sm flex items-center gap-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-white/20 transition text-gray-700 dark:text-white">
-                Monthly
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <div class="px-4 py-1.5 rounded-full text-sm font-semibold flex items-center gap-2 shadow-sm transition-colors duration-300 {{ $status == 'Online' ? 'bg-[#D2FF3A]/20 border border-[#D2FF3A]/30 text-green-800 dark:text-[#D2FF3A]' : 'bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/30 text-red-600 dark:text-red-400' }}">
+                @if($status == 'Online')
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    Live Data
+                @else
+                    <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                    Data Terakhir (Offline)
+                @endif
             </div>
         </div>
         
