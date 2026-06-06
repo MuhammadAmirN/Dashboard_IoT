@@ -26,7 +26,7 @@
     <div class="overflow-x-auto">
         <table class="w-full text-left text-gray-700 dark:text-gray-300">
             <thead>
-                <tr class="border-b border-gray-200 dark:border-[#2A2D30] text-gray-500 dark:text-gray-400">
+                <tr class="border-b border-gray-200 dark:border-[#2A2D30] text-gray-500 dark:text-gray-400 whitespace-nowrap">
                     <th class="py-3 px-4 font-medium">No</th>
                     <th class="py-3 px-4 font-medium">Tali</th>
                     <th class="py-3 px-4 font-medium">Jumlah Ayunan</th>
@@ -35,7 +35,7 @@
                     <th class="py-3 px-4 font-medium">Waktu</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="whitespace-nowrap">
                 @forelse ($datasensor as $item)
                 <tr class="border-b border-gray-100 dark:border-[#2A2D30] hover:bg-gray-50 dark:hover:bg-[#2A2D30]/50 transition">
                     <td class="py-3 px-4">{{ $loop->iteration + ($datasensor->currentPage() - 1) * $datasensor->perPage() }}</td>
