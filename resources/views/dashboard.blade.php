@@ -164,7 +164,7 @@
         <div class="flex justify-between items-center mb-6 z-10 relative">
             <div class="flex items-center gap-2 font-semibold">
                 <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                Analisis Periode
+                Visualisasi Pergerakan Bandul (Simpangan)
             </div>
             <div class="bg-white/10 px-4 py-2 rounded-full text-sm flex items-center gap-2 cursor-pointer hover:bg-white/20 transition">
                 Monthly
@@ -198,30 +198,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Create gradient
     let gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, 'rgba(210, 255, 58, 0.4)'); // #D2FF3A
+    gradient.addColorStop(0, 'rgba(210, 255, 58, 0.6)'); // #D2FF3A
     gradient.addColorStop(1, 'rgba(210, 255, 58, 0)');
+
+    // Data Aktual dari Database (SensorLogs)
+    let labels = [];
+    let dataSimpangan = [];
+    
+    @isset($sensorLogs)
+    @foreach ($sensorLogs as $log)
+        labels.push('{{ number_format($log->waktu_ms / 1000, 2) }}s');
+        dataSimpangan.push({{ $log->simpangan }});
+    @endforeach
+    @endisset
+
+    // Fallback jika tidak ada data log
+    if (dataSimpangan.length === 0) {
+        labels = ['0s', '1s', '2s'];
+        dataSimpangan = [0, 0, 0];
+    }
 
     new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [
-                @foreach ($chartData as $item)
-                    '{{ $item->created_at->format('H:i:s') }}',
-                @endforeach
-            ],
+            labels: labels,
             datasets: [{
-                label: 'Periode (s)',
-                data: [
-                    @foreach ($chartData as $item)
-                        {{ $item->periode }},
-                    @endforeach
-                ],
+                label: 'Posisi Bandul',
+                data: dataSimpangan,
                 borderColor: '#D2FF3A',
                 backgroundColor: gradient,
                 fill: true,
-                tension: 0.4, // Efek lembah bukit
+                tension: 0.4, // Tetap smooth dengan Bezier Curve
                 borderWidth: 3,
-                pointRadius: 4,
+                pointRadius: 4, // Tampilkan titik lokasi sensor memotong
+                pointHoverRadius: 6,
                 pointBackgroundColor: '#B4AEFF',
                 pointBorderColor: '#1A1C1E',
                 pointBorderWidth: 2,
@@ -230,6 +240,10 @@ document.addEventListener("DOMContentLoaded", function () {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
             plugins: {
                 legend: {
                     display: false
@@ -241,25 +255,38 @@ document.addEventListener("DOMContentLoaded", function () {
                     borderColor: '#333',
                     borderWidth: 1,
                     padding: 10,
-                    displayColors: false
+                    callbacks: {
+                        label: function(context) {
+                            let val = context.raw;
+                            if(val > 0.8) return 'Posisi: Titik Awal';
+                            if(val < -0.8) return 'Posisi: Titik Akhir';
+                            if(val >= -0.2 && val <= 0.2) return 'Posisi: Titik Tengah';
+                            return 'Amplitudo: ' + val.toFixed(2);
+                        }
+                    }
                 }
             },
             scales: {
                 y: {
-                    display: false, // hide y axis like mockup
-                    beginAtZero: true,
+                    min: -1.2,
+                    max: 1.2,
+                    ticks: {
+                        color: 'rgba(255, 255, 255, 0.6)',
+                        callback: function(value) {
+                            if(value === 1) return 'Awal';
+                            if(value === 0) return 'Tengah';
+                            if(value === -1) return 'Akhir';
+                            return '';
+                        },
+                        font: { size: 12, weight: 'bold' }
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.05)',
+                        drawBorder: false,
+                    }
                 },
                 x: {
-                    grid: {
-                        display: false,
-                        drawBorder: false,
-                    },
-                    ticks: {
-                        color: 'rgba(255, 255, 255, 0.5)',
-                        font: {
-                            size: 12
-                        }
-                    }
+                    display: false, // Sembunyikan garis ms agar lebih bersih
                 }
             }
         }

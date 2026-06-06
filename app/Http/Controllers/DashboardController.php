@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\SensorData;
+use App\Models\SensorLog;
 
 class DashboardController extends Controller
 {
@@ -17,6 +18,15 @@ class DashboardController extends Controller
             ->take(15)
             ->get()
             ->reverse();
+
+        // Data Log Sensor untuk Grafik Redaman
+        $latestLogSession = SensorLog::latest('id')->first();
+        $sensorLogs = [];
+        if ($latestLogSession) {
+            $sensorLogs = SensorLog::where('session_id', $latestLogSession->session_id)
+                ->orderBy('waktu_ms', 'asc')
+                ->get();
+        }
 
         // Ringkasan per Tali
         $summary = SensorData::selectRaw('string_length, AVG(periode) as avg_periode, SUM(jumlah_ayunan) as total_ayunan')
@@ -31,6 +41,7 @@ class DashboardController extends Controller
         return view('dashboard', compact(
             'latest',
             'chartData',
+            'sensorLogs',
             'status',
             'summary'
         ));
