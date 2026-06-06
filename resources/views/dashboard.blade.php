@@ -196,12 +196,17 @@
 document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById('sensorChart').getContext('2d');
 
+    // Create gradient
+    let gradient = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient.addColorStop(0, 'rgba(210, 255, 58, 0.4)'); // #D2FF3A
+    gradient.addColorStop(1, 'rgba(210, 255, 58, 0)');
+
     new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
             labels: [
                 @foreach ($chartData as $item)
-                    '{{ $item->created_at->format('H:i') }}',
+                    '{{ $item->created_at->format('H:i:s') }}',
                 @endforeach
             ],
             datasets: [{
@@ -211,14 +216,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         {{ $item->periode }},
                     @endforeach
                 ],
-                backgroundColor: function(context) {
-                    const index = context.dataIndex;
-                    // Colors like the mockup: mix of purple and green, mostly green
-                    return index % 3 === 0 ? '#B4AEFF' : '#D2FF3A';
-                },
-                borderRadius: 6,
-                barThickness: 16,
-                borderSkipped: false,
+                borderColor: '#D2FF3A',
+                backgroundColor: gradient,
+                fill: true,
+                tension: 0.4, // Efek lembah bukit
+                borderWidth: 3,
+                pointRadius: 4,
+                pointBackgroundColor: '#B4AEFF',
+                pointBorderColor: '#1A1C1E',
+                pointBorderWidth: 2,
             }]
         },
         options: {

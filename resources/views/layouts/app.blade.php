@@ -40,12 +40,7 @@
             </nav>
         </div>
 
-        <!-- Upgrade Card -->
-        <div class="bg-[#D2FF3A] text-black p-5 rounded-3xl mt-10">
-            <h4 class="font-bold mb-1">Upgrade to Pro</h4>
-            <p class="text-xs text-black/70 mb-4">Dapatkan fitur analisis data lengkap.</p>
-            <button class="w-full py-2 bg-[#1A1C1E] text-white text-sm font-semibold rounded-full hover:bg-black transition">Upgrade Now</button>
-        </div>
+
     </aside>
 
     <!-- Main Content -->
