@@ -47,9 +47,35 @@ class DashboardController extends Controller
         ));
     }
 
-    public function history()
+    public function history(Request $request)
     {
-        $datasensor = SensorData::latest()->paginate(15);
+        $query = SensorData::query();
+
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where('string_length', 'like', "%{$search}%")
+                  ->orWhere('status_sensor', 'like', "%{$search}%")
+                  ->orWhere('jumlah_ayunan', 'like', "%{$search}%");
+        }
+
+        $datasensor = $query->latest()->paginate(15)->appends($request->query());
         return view('history', compact('datasensor'));
+    }
+
+    public function exportPdf(Request $request)
+    {
+        $query = SensorData::query();
+
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where('string_length', 'like', "%{$search}%")
+                  ->orWhere('status_sensor', 'like', "%{$search}%")
+                  ->orWhere('jumlah_ayunan', 'like', "%{$search}%");
+        }
+
+        $datasensor = $query->latest()->get();
+
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pdf.sensor_history', compact('datasensor'));
+        return $pdf->download('Data-Sensor-'.now()->format('Y-md-His').'.pdf');
     }
 }
