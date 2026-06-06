@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="flex justify-between items-center mb-8">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
     <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Baca Data (Komparasi)</h1>
     <a href="{{ route('dashboard') }}" class="px-4 py-2 bg-gray-100 dark:bg-[#2A2D30] text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-200 dark:hover:bg-[#3A3D40] hover:text-gray-900 dark:hover:text-white transition shadow-sm dark:shadow-lg border border-gray-200 dark:border-[#3A3D40]">
         Kembali ke Dashboard

@@ -17,17 +17,25 @@
     </script>
 </head>
 
-<body class="bg-[#F4F5F7] dark:bg-[#0F1113] font-sans text-gray-900 dark:text-gray-100 antialiased h-screen flex overflow-hidden transition-colors duration-300">
+<body class="bg-[#F4F5F7] dark:bg-[#0F1113] font-sans text-gray-900 dark:text-gray-100 antialiased h-screen flex overflow-hidden transition-colors duration-300 relative">
+
+    <!-- Mobile Sidebar Overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden transition-opacity"></div>
 
     <!-- Sidebar -->
-    <aside class="w-64 bg-white dark:bg-[#1A1C1E] border-r border-gray-200 dark:border-[#2A2D30] text-gray-700 dark:text-gray-300 flex flex-col justify-between p-6 transition-colors duration-300">
+    <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 w-64 bg-white dark:bg-[#1A1C1E] border-r border-gray-200 dark:border-[#2A2D30] text-gray-700 dark:text-gray-300 flex flex-col justify-between p-6 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 z-50 h-full">
         <div>
-            <!-- Logo -->
-            <div class="flex items-center gap-3 mb-10 text-gray-900 dark:text-white font-bold text-2xl">
-                <div class="w-8 h-8 bg-[#D2FF3A] rounded-lg flex items-center justify-center text-black shadow-md">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            <!-- Logo & Close Button (Mobile) -->
+            <div class="flex items-center justify-between mb-10">
+                <div class="flex items-center gap-3 text-gray-900 dark:text-white font-bold text-2xl">
+                    <div class="w-8 h-8 bg-[#D2FF3A] rounded-lg flex items-center justify-center text-black shadow-md">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    WebIoT
                 </div>
-                WebIoT
+                <button id="close-sidebar" class="lg:hidden text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
             </div>
 
             <!-- Navigation -->
@@ -57,17 +65,21 @@
     </aside>
 
     <!-- Main Content -->
-    <main class="flex-1 bg-[#F4F5F7] dark:bg-[#0F1113] p-8 flex flex-col overflow-y-auto transition-colors duration-300">
+    <main class="flex-1 w-full bg-[#F4F5F7] dark:bg-[#0F1113] p-4 md:p-8 flex flex-col overflow-y-auto transition-colors duration-300">
 
         <!-- Top Header -->
-        <header class="flex justify-between items-center mb-8">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-gray-300 rounded-full overflow-hidden border-2 border-white dark:border-[#2A2D30] shadow-sm">
+        <header class="flex justify-between items-center mb-8 gap-4">
+            <div class="flex items-center gap-3 md:gap-4">
+                <!-- Hamburger Menu -->
+                <button id="open-sidebar" class="lg:hidden p-2 -ml-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-[#2A2D30] rounded-lg transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-gray-300 rounded-full overflow-hidden border-2 border-white dark:border-[#2A2D30] shadow-sm flex-shrink-0">
                     <img src="https://i.pravatar.cc/150?u=admin" alt="Admin" class="w-full h-full object-cover">
                 </div>
                 <div>
-                    <h2 class="font-bold text-lg leading-tight text-gray-900 dark:text-white">Admin WebIoT</h2>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">admin@webiot.com</p>
+                    <h2 class="font-bold text-base md:text-lg leading-tight text-gray-900 dark:text-white">Admin WebIoT</h2>
+                    <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 hidden sm:block">admin@webiot.com</p>
                 </div>
             </div>
 
@@ -128,6 +140,21 @@
             }
         }
     });
+
+    // Mobile Sidebar Toggle
+    var openSidebarBtn = document.getElementById('open-sidebar');
+    var closeSidebarBtn = document.getElementById('close-sidebar');
+    var sidebar = document.getElementById('sidebar');
+    var sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    function toggleSidebar() {
+        sidebar.classList.toggle('-translate-x-full');
+        sidebarOverlay.classList.toggle('hidden');
+    }
+
+    if(openSidebarBtn) openSidebarBtn.addEventListener('click', toggleSidebar);
+    if(closeSidebarBtn) closeSidebarBtn.addEventListener('click', toggleSidebar);
+    if(sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebar);
 </script>
 
 </body>

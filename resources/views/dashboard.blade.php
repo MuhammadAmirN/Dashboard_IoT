@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="flex justify-between items-end mb-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-6">
     <div>
         <h1 class="text-4xl font-bold mb-2 text-gray-900 dark:text-white">WebIoT Dashboard</h1>
         <p class="text-gray-500 dark:text-gray-400 text-sm">Pantau alat bandul matematis secara realtime!</p>
