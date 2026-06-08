@@ -11,10 +11,10 @@ class SensorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'jumlah_ayunan' => 'required',
-            'periode' => 'required',
-            'status_sensor' => 'required',
-        ]);
+    'jumlah_ayunan' => 'required|integer',
+    'periode' => 'required|numeric',
+    'status_sensor' => 'required|string',
+]);
 
         $sensorData = SensorData::create([
             'jumlah_ayunan' => $request->jumlah_ayunan,
