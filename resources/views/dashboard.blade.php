@@ -290,8 +290,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Create gradient
     let gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, 'rgba(140, 132, 255, 0.3)'); // Soft Purple
-    gradient.addColorStop(1, 'rgba(140, 132, 255, 0)');
+    gradient.addColorStop(0, 'rgba(210, 255, 58, 0.6)'); // #D2FF3A
+    gradient.addColorStop(1, 'rgba(210, 255, 58, 0)');
 
     // Data Aktual dari Database (SensorLogs)
     let labels = [];
@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
     @isset($sensorLogs)
     @foreach ($sensorLogs as $log)
-        labels.push('{{ number_format($log->waktu_ms / 1000, 1) }}s');
+        labels.push('{{ number_format($log->waktu_ms / 1000, 2) }}s');
         dataSimpangan.push({{ $log->simpangan }});
     @endforeach
     @endisset
@@ -315,50 +315,70 @@ document.addEventListener("DOMContentLoaded", function () {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Simpangan (cm)',
+                label: 'Posisi Bandul',
                 data: dataSimpangan,
-                borderColor: '#8C84FF', 
+                borderColor: '#b4dc1f', // works on dark and light
                 backgroundColor: gradient,
                 fill: true,
-                tension: 0.3, // Karakteristik gelombang fisik yang realistis
-                borderWidth: 1, // Garis sangat tipis untuk kepadatan tinggi
-                pointRadius: 0,
-                pointHoverRadius: 0, // Matikan hover point agar tidak mengganggu visualisasi rapat
-                spanGaps: true
+                tension: 0.4,
+                borderWidth: 3,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                pointBackgroundColor: '#8C84FF',
+                pointBorderColor: '#fff',
+                pointBorderWidth: 2,
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            animation: false, // Matikan animasi untuk performa data ribuan titik
             interaction: {
-                mode: 'none', // Matikan interaksi untuk tampilan statis yang bersih
+                mode: 'index',
                 intersect: false,
             },
             plugins: {
-                legend: { display: false },
-                tooltip: { enabled: false } // Matikan tooltip agar fokus pada bentuk gelombang
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleColor: '#fff',
+                    bodyColor: '#D2FF3A',
+                    borderColor: 'rgba(255, 255, 255, 0.1)',
+                    borderWidth: 1,
+                    padding: 10,
+                    callbacks: {
+                        label: function(context) {
+                            let val = context.raw;
+                            if(val > 0.8) return 'Posisi: Titik Awal';
+                            if(val < -0.8) return 'Posisi: Titik Akhir';
+                            if(val >= -0.2 && val <= 0.2) return 'Posisi: Titik Tengah';
+                            return 'Amplitudo: ' + val.toFixed(2);
+                        }
+                    }
+                }
             },
             scales: {
                 y: {
-                    min: -15,
-                    max: 15,
-                    grid: {
-                        color: (context) => context.tick.value === 0 ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0.03)',
-                        lineWidth: (context) => context.tick.value === 0 ? 1.5 : 1,
-                        drawBorder: false,
+                    min: -1.2,
+                    max: 1.2,
+                    ticks: {
+                        color: '#888', // Neutral grey works well on both
+                        callback: function(value) {
+                            if(value === 1) return 'Awal';
+                            if(value === 0) return 'Tengah';
+                            if(value === -1) return 'Akhir';
+                            return '';
+                        },
+                        font: { size: 12, weight: 'bold' }
                     },
-                    ticks: { color: '#bbb', font: { size: 10 } }
+                    grid: {
+                        color: 'rgba(128, 128, 128, 0.15)', // Neutral subtle grid
+                        drawBorder: false,
+                    }
                 },
                 x: {
-                    display: true,
-                    ticks: {
-                        color: '#bbb',
-                        font: { size: 8 },
-                        autoSkip: true,
-                        maxTicksLimit: 30 
-                    },
-                    grid: { display: false }
+                    display: false,
                 }
             }
         }
