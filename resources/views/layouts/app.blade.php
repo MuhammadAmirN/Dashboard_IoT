@@ -40,13 +40,18 @@
 
             <!-- Navigation -->
             <nav class="space-y-2">
-                <a href="{{ route('dashboard') }}" class="flex items-center justify-between px-4 py-3 {{ request()->routeIs('dashboard') ? 'bg-gray-100 dark:bg-white text-black font-semibold rounded-full shadow-sm' : 'hover:bg-gray-50 dark:hover:bg-white/10 dark:hover:text-white rounded-full transition' }}">
+                @php
+                    $dashRoute = auth()->user()->role === 'murid' ? route('murid.dashboard') : route('dashboard');
+                    $isDashActive = request()->routeIs('dashboard') || request()->routeIs('murid.dashboard');
+                @endphp
+                <a href="{{ $dashRoute }}" class="flex items-center justify-between px-4 py-3 {{ $isDashActive ? 'bg-gray-100 dark:bg-white text-black font-semibold rounded-full shadow-sm' : 'hover:bg-gray-50 dark:hover:bg-white/10 dark:hover:text-white rounded-full transition' }}">
                     <div class="flex items-center gap-3">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                         Dashboard
                     </div>
                 </a>
 
+                @if(auth()->user()->role !== 'murid')
                 <a href="{{ route('history') }}" class="flex items-center px-4 py-3 {{ request()->routeIs('history') ? 'bg-gray-100 dark:bg-white text-black font-semibold rounded-full shadow-sm' : 'hover:bg-gray-50 dark:hover:bg-white/10 dark:hover:text-white rounded-full transition' }}">
                     <div class="flex items-center gap-3">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
@@ -60,7 +65,19 @@
                         Baca Data
                     </div>
                 </a>
+                @endif
             </nav>
+        </div>
+
+        <!-- Logout Button -->
+        <div class="mt-8">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-red-500/10 text-red-600 dark:text-red-400 hover:bg-red-500 hover:text-white rounded-xl transition font-semibold">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    Logout
+                </button>
+            </form>
         </div>
     </aside>
 
@@ -78,8 +95,8 @@
                     <img src="https://i.pravatar.cc/150?u=admin" alt="Admin" class="w-full h-full object-cover">
                 </div>
                 <div>
-                    <h2 class="font-bold text-base md:text-lg leading-tight text-gray-900 dark:text-white">Admin WebIoT</h2>
-                    <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 hidden sm:block">admin@webiot.com</p>
+                    <h2 class="font-bold text-base md:text-lg leading-tight text-gray-900 dark:text-white">{{ auth()->user()->name }}</h2>
+                    <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 hidden sm:block">{{ auth()->user()->email }}</p>
                 </div>
             </div>
 
