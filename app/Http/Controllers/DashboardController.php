@@ -84,8 +84,9 @@ class DashboardController extends Controller
         // Ambil daftar session unik dari tabel sensor_logs
         // Menggunakan groupBy pada DB driver tertentu (seperti strict mode) mungkin butuh trik
         // Kita bisa ambil distinct session_id
-        $sessions = SensorLog::select('session_id', \DB::raw('MIN(created_at) as started_at'), \DB::raw('COUNT(*) as total_data'))
-            ->groupBy('session_id')
+        $sessions = SensorLog::select('session_id', 'user_id', \DB::raw('MIN(created_at) as started_at'), \DB::raw('COUNT(*) as total_data'))
+            ->with('user')
+            ->groupBy('session_id', 'user_id')
             ->orderBy('started_at', 'desc')
             ->get();
 

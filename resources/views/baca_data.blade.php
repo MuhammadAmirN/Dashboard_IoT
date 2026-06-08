@@ -17,7 +17,9 @@
         <select id="select-data-1" class="w-full bg-gray-50 dark:bg-[#0F1113] border border-gray-200 dark:border-[#2A2D30] text-gray-700 dark:text-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:border-[#D2FF3A] transition appearance-none">
             <option value="">-- Pilih Sesi Data --</option>
             @foreach($sessions as $session)
-                <option value="{{ $session->session_id }}">Sesi {{ $session->session_id }} ({{ \Carbon\Carbon::parse($session->started_at)->format('d M H:i') }})</option>
+                <option value="{{ $session->session_id }}">
+                    {{ $session->user->name ?? 'Guru / Anonim' }} - {{ \Carbon\Carbon::parse($session->started_at)->format('d M, H:i') }}
+                </option>
             @endforeach
         </select>
     </div>
@@ -28,7 +30,9 @@
         <select id="select-data-2" class="w-full bg-gray-50 dark:bg-[#0F1113] border border-gray-200 dark:border-[#2A2D30] text-gray-700 dark:text-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:border-[#B4AEFF] transition appearance-none">
             <option value="">-- Pilih Sesi Data --</option>
             @foreach($sessions as $session)
-                <option value="{{ $session->session_id }}">Sesi {{ $session->session_id }} ({{ \Carbon\Carbon::parse($session->started_at)->format('d M H:i') }})</option>
+                <option value="{{ $session->session_id }}">
+                    {{ $session->user->name ?? 'Guru / Anonim' }} - {{ \Carbon\Carbon::parse($session->started_at)->format('d M, H:i') }}
+                </option>
             @endforeach
         </select>
     </div>
@@ -39,7 +43,9 @@
         <select id="select-data-3" class="w-full bg-gray-50 dark:bg-[#0F1113] border border-gray-200 dark:border-[#2A2D30] text-gray-700 dark:text-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:border-orange-400 transition appearance-none">
             <option value="">-- Pilih Sesi Data --</option>
             @foreach($sessions as $session)
-                <option value="{{ $session->session_id }}">Sesi {{ $session->session_id }} ({{ \Carbon\Carbon::parse($session->started_at)->format('d M H:i') }})</option>
+                <option value="{{ $session->session_id }}">
+                    {{ $session->user->name ?? 'Guru / Anonim' }} - {{ \Carbon\Carbon::parse($session->started_at)->format('d M, H:i') }}
+                </option>
             @endforeach
         </select>
     </div>
@@ -151,9 +157,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     ticks: {
                         color: '#888',
                         callback: function(value) {
-                            if(value === 1) return 'Awal';
-                            if(value === 0) return 'Tengah';
-                            if(value === -1) return 'Akhir';
+                            if(value === 1) return '1/2 (Awal)';
+                            if(value === 0) return '0 (Tengah)';
+                            if(value === -1) return '-1/2 (Akhir)';
                             return '';
                         },
                         font: { size: 12, weight: 'bold' }
@@ -164,23 +170,26 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 },
                 x: {
-                    ticks: { color: '#888' },
+                    type: 'linear',
+                    title: { display: true, text: 'Waktu (Detik)', color: '#888' },
+                    ticks: { 
+                        color: '#888',
+                        callback: function(value) { return value + 's'; }
+                    },
                     grid: { display: false }
                 }
             }
         }
     });
 
-    // Label arrays array of arrays for syncing X axis
-    let allLabels = [[], [], []];
-
     // Fungsi Fetch dan Update
     async function fetchAndUpdate(datasetIndex, sessionId) {
+        const selectElement = document.getElementById('select-data-' + (datasetIndex + 1));
+        const sessionName = sessionId ? selectElement.options[selectElement.selectedIndex].text : `Data ${datasetIndex + 1}`;
+
         if (!sessionId) {
             compareChart.data.datasets[datasetIndex].data = [];
-            compareChart.data.datasets[datasetIndex].label = `Data ${datasetIndex + 1}`;
-            allLabels[datasetIndex] = [];
-            recalculateLabels();
+            compareChart.data.datasets[datasetIndex].label = sessionName;
             compareChart.update();
             return;
         }
@@ -189,36 +198,23 @@ document.addEventListener("DOMContentLoaded", function () {
             const response = await fetch(`/api/baca-data/${sessionId}`);
             const data = await response.json();
             
-            // Map data
-            let simpanganData = [];
-            let labels = [];
-
+            // Map data {x, y} untuk linear scale
+            let chartPoints = [];
             data.forEach(log => {
-                labels.push((log.waktu_ms / 1000).toFixed(2) + 's');
-                simpanganData.push(log.simpangan);
+                chartPoints.push({
+                    x: log.waktu_ms / 1000,
+                    y: log.simpangan
+                });
             });
 
-            allLabels[datasetIndex] = labels;
-            recalculateLabels();
-
             // Update Dataset
-            compareChart.data.datasets[datasetIndex].data = simpanganData;
-            compareChart.data.datasets[datasetIndex].label = 'Sesi ' + sessionId;
+            compareChart.data.datasets[datasetIndex].data = chartPoints;
+            compareChart.data.datasets[datasetIndex].label = sessionName;
             compareChart.update();
 
         } catch (error) {
             console.error("Gagal mengambil data:", error);
         }
-    }
-
-    function recalculateLabels() {
-        let longest = [];
-        for (let i = 0; i < allLabels.length; i++) {
-            if (allLabels[i].length > longest.length) {
-                longest = allLabels[i];
-            }
-        }
-        compareChart.data.labels = longest;
     }
 
     // Event Listeners
@@ -240,8 +236,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('select-data-2').value = "";
         document.getElementById('select-data-3').value = "";
         
-        allLabels = [[], [], []];
-        compareChart.data.labels = [];
         compareChart.data.datasets[0].data = [];
         compareChart.data.datasets[0].label = "Data 1";
         compareChart.data.datasets[1].data = [];

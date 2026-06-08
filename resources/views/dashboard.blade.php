@@ -278,9 +278,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     ticks: {
                         color: '#888', // Neutral grey works well on both
                         callback: function(value) {
-                            if(value === 1) return 'Awal';
-                            if(value === 0) return 'Tengah';
-                            if(value === -1) return 'Akhir';
+                            if(value === 1) return '1/2 (Awal)';
+                            if(value === 0) return '0 (Tengah)';
+                            if(value === -1) return '-1/2 (Akhir)';
                             return '';
                         },
                         font: { size: 12, weight: 'bold' }
