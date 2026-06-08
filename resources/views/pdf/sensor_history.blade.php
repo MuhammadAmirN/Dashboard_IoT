@@ -66,17 +66,19 @@
         <thead>
             <tr>
                 <th width="5%">No</th>
-                <th width="15%">Tali</th>
-                <th width="20%">Jumlah Ayunan</th>
+                <th width="20%">Nama Siswa</th>
+                <th width="10%">Tali</th>
+                <th width="15%">Jumlah Ayunan</th>
                 <th width="15%">Periode</th>
                 <th width="15%">Status</th>
-                <th width="30%">Waktu Catat</th>
+                <th width="20%">Waktu Catat</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($datasensor as $item)
             <tr>
                 <td>{{ $loop->iteration }}</td>
+                <td>{{ $item->user->name ?? 'Anonim' }}</td>
                 <td><span class="badge">{{ $item->string_length ?? 'Default' }}</span></td>
                 <td>{{ $item->jumlah_ayunan }} kali</td>
                 <td>{{ $item->periode }} detik</td>
@@ -85,7 +87,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="6" style="text-align: center; padding: 20px;">Tidak ada data sensor yang ditemukan.</td>
+                <td colspan="7" style="text-align: center; padding: 20px;">Tidak ada data sensor yang ditemukan.</td>
             </tr>
             @endforelse
         </tbody>

@@ -9,7 +9,6 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
-use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -57,12 +56,4 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
-
-    // User Management Routes
-    Route::prefix('users')->group(function () {
-        Route::get('/management', [App\Http\Controllers\UserManagementController::class, 'index'])->name('user-management.index');
-        Route::get('/{userId}/assign-role', [App\Http\Controllers\UserManagementController::class, 'assignRole'])->name('user-management.assign-role');
-        Route::put('/{userId}/update-role', [App\Http\Controllers\UserManagementController::class, 'updateRole'])->name('user-management.update-role');
-        Route::delete('/{userId}/delete', [App\Http\Controllers\UserManagementController::class, 'deleteUser'])->name('user-management.delete');
-    });
 });
