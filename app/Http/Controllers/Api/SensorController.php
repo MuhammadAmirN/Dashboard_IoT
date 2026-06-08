@@ -49,7 +49,7 @@ class SensorController extends Controller
             foreach ($request->sensor_logs as $log) {
                 \App\Models\SensorLog::create([
                     'session_id' => $sessionId,
-                    'posisi_sensor' => $log['posisi_sensor'],
+                    'posisi_sensor' => $log['posisi_sensor'] ?? '1', // Default '1' jika tidak ada
                     'waktu_ms' => $log['waktu_ms'],
                     'simpangan' => $log['simpangan'] ?? 0,
                 ]);

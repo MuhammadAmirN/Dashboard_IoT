@@ -146,16 +146,8 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             scales: {
                 y: {
-                    min: -1.2,
-                    max: 1.2,
                     ticks: {
                         color: '#888',
-                        callback: function(value) {
-                            if(value === 1) return 'Awal';
-                            if(value === 0) return 'Tengah';
-                            if(value === -1) return 'Akhir';
-                            return '';
-                        },
                         font: { size: 12, weight: 'bold' }
                     },
                     grid: {
@@ -243,6 +235,18 @@ document.addEventListener("DOMContentLoaded", function () {
         allLabels = [[], [], []];
         compareChart.data.labels = [];
         compareChart.data.datasets[0].data = [];
+        compareChart.data.datasets[0].label = "Data 1";
+        compareChart.data.datasets[1].data = [];
+        compareChart.data.datasets[1].label = "Data 2";
+        compareChart.data.datasets[2].data = [];
+        compareChart.data.datasets[2].label = "Data 3";
+        compareChart.update();
+    });
+});
+</script>
+
+@endsection
+data.datasets[0].data = [];
         compareChart.data.datasets[0].label = "Data 1";
         compareChart.data.datasets[1].data = [];
         compareChart.data.datasets[1].label = "Data 2";
