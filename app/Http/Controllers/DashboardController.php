@@ -49,7 +49,7 @@ class DashboardController extends Controller
 
     public function history(Request $request)
     {
-        $query = SensorData::query();
+        $query = SensorData::with('user');
 
         if ($request->has('search') && $request->search != '') {
             $search = $request->search;
@@ -64,7 +64,7 @@ class DashboardController extends Controller
 
     public function exportPdf(Request $request)
     {
-        $query = SensorData::query();
+        $query = SensorData::with('user');
 
         if ($request->has('search') && $request->search != '') {
             $search = $request->search;

@@ -28,6 +28,7 @@
             <thead>
                 <tr class="border-b border-gray-200 dark:border-[#2A2D30] text-gray-500 dark:text-gray-400 whitespace-nowrap">
                     <th class="py-3 px-4 font-medium">No</th>
+                    <th class="py-3 px-4 font-medium">Nama Siswa</th>
                     <th class="py-3 px-4 font-medium">Tali</th>
                     <th class="py-3 px-4 font-medium">Jumlah Ayunan</th>
                     <th class="py-3 px-4 font-medium">Periode</th>
@@ -39,6 +40,7 @@
                 @forelse ($datasensor as $item)
                 <tr class="border-b border-gray-100 dark:border-[#2A2D30] hover:bg-gray-50 dark:hover:bg-[#2A2D30]/50 transition">
                     <td class="py-3 px-4">{{ $loop->iteration + ($datasensor->currentPage() - 1) * $datasensor->perPage() }}</td>
+                    <td class="py-3 px-4 font-semibold text-[#8C84FF]">{{ $item->user->name ?? 'Anonim' }}</td>
                     <td class="py-3 px-4">
                         <span class="px-3 py-1 bg-[#D2FF3A]/20 dark:bg-[#D2FF3A]/10 text-green-700 dark:text-[#D2FF3A] border border-[#D2FF3A]/30 dark:border-[#D2FF3A]/20 rounded-full text-xs font-semibold">
                             {{ $item->string_length ?? 'Default' }}
@@ -57,7 +59,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6" class="py-8 text-center text-gray-500">
+                    <td colspan="7" class="py-8 text-center text-gray-500">
                         Data tidak ditemukan.
                     </td>
                 </tr>
