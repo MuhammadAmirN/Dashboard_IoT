@@ -84,33 +84,6 @@
     <!-- Right Side Grid (2 cols inside) -->
     <div class="lg:col-span-2 flex flex-col gap-6">
 
-<<<<<<< HEAD
-<!-- Alat & Komponen -->
-<div class="bg-white p-6 rounded-2xl shadow-lg mb-8 text-center">
-    <h2 class="text-2xl font-bold text-blue-700 mb-6">Alat & Komponen yang Digunakan</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="p-4 border border-blue-100 rounded-xl bg-blue-50">
-            <p class="font-bold text-blue-800">ESP32 / NodeMCU</p>
-            <p class="text-xs text-gray-500">Otak Utama & WiFi</p>
-        </div>
-        <div class="p-4 border border-blue-100 rounded-xl bg-blue-50">
-            <p class="font-bold text-blue-800">Sensor FC-51</p>
-            <p class="text-xs text-gray-500">Deteksi Ayunan (IR)</p>
-        </div>
-        <div class="p-4 border border-blue-100 rounded-xl bg-blue-50">
-            <p class="font-bold text-blue-800">Bandul Matematis</p>
-            <p class="text-xs text-gray-500">Objek Percobaan</p>
-        </div>
-        <div class="p-4 border border-blue-100 rounded-xl bg-blue-50">
-            <p class="font-bold text-blue-800">Kabel Jumper</p>
-            <p class="text-xs text-gray-500">Koneksi Rangkaian</p>
-        </div>
-    </div>
-</div>
-
-<!-- Table Summary Comparison -->
-<div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
-=======
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Card 2: Periode (Kanan Atas 1) -->
             <div class="bg-white dark:bg-[#1A1C1E] border border-gray-200 dark:border-[#2A2D30] p-6 rounded-[2rem] shadow-sm flex flex-col justify-between h-44 transition-colors duration-300">
@@ -183,7 +156,6 @@
                 <div class="flex-1 h-12 bg-gray-50 dark:bg-white/5 rounded-xl border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-white/10 transition">Tali C</div>
             </div>
         </div>
->>>>>>> origin/zulfa-ui-dashboard
 
     </div>
 
@@ -222,6 +194,93 @@
         
         <!-- Decorative grid pattern background -->
         <div class="absolute bottom-0 left-0 w-full h-32 opacity-10 dark:opacity-5" style="background-image: repeating-linear-gradient(45deg, #888 25%, transparent 25%, transparent 75%, #888 75%, #888), repeating-linear-gradient(45deg, #888 25%, transparent 25%, transparent 75%, #888 75%, #888); background-position: 0 0, 10px 10px; background-size: 20px 20px;"></div>
+    </div>
+
+    <!-- Perbandingan Antar Tali -->
+    <div class="lg:col-span-3 bg-white dark:bg-[#1A1C1E] border border-gray-200 dark:border-[#2A2D30] rounded-[2rem] shadow-lg p-6 mb-2 transition-colors duration-300">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <svg class="w-6 h-6 text-[#B4AEFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                Perbandingan Antar Tali
+            </h2>
+            <a href="{{ route('history') }}" class="text-sm font-bold text-[#8C84FF] hover:text-[#B4AEFF] transition">
+                Lihat Semua Riwayat &rarr;
+            </a>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="border-b border-gray-100 dark:border-gray-800 text-gray-500 dark:text-gray-400 text-sm">
+                        <th class="py-4 px-4 font-semibold">Panjang Tali</th>
+                        <th class="py-4 px-4 text-center font-semibold">Waktu (10 Ayunan)</th>
+                        <th class="py-4 px-4 text-center font-semibold">Waktu Rata-rata</th>
+                        <th class="py-4 px-4 text-center font-semibold">Status</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700 dark:text-gray-300">
+                    <tr class="border-b border-gray-50 dark:border-gray-800/50 hover:bg-gray-50 dark:hover:bg-white/5 transition">
+                        <td class="py-4 px-4 font-bold">Tali A (20cm)</td>
+                        <td class="py-4 px-4 text-center">9.12 detik</td>
+                        <td class="py-4 px-4 text-center text-[#8C84FF] font-bold">0.91 s</td>
+                        <td class="py-4 px-4 text-center">
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 rounded-full text-xs font-bold">Stabil</span>
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-50 dark:border-gray-800/50 hover:bg-gray-50 dark:hover:bg-white/5 transition">
+                        <td class="py-4 px-4 font-bold">Tali B (30cm)</td>
+                        <td class="py-4 px-4 text-center">11.05 detik</td>
+                        <td class="py-4 px-4 text-center text-[#8C84FF] font-bold">1.10 s</td>
+                        <td class="py-4 px-4 text-center">
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 rounded-full text-xs font-bold">Stabil</span>
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition">
+                        <td class="py-4 px-4 font-bold">Tali C (40cm)</td>
+                        <td class="py-4 px-4 text-center">12.80 detik</td>
+                        <td class="py-4 px-4 text-center text-[#8C84FF] font-bold">1.28 s</td>
+                        <td class="py-4 px-4 text-center">
+                            <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-400 rounded-full text-xs font-bold">Variasi</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Alat & Komponen -->
+    <div class="lg:col-span-3 bg-white dark:bg-[#1A1C1E] border border-gray-200 dark:border-[#2A2D30] p-8 rounded-[2rem] shadow-lg text-center transition-colors duration-300">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Alat & Komponen yang Digunakan</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="p-6 border border-gray-100 dark:border-gray-800 rounded-[2rem] bg-gray-50 dark:bg-white/5 hover:border-[#B4AEFF] transition-colors group">
+                <div class="w-12 h-12 bg-[#B4AEFF]/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#B4AEFF] transition-colors">
+                    <svg class="w-6 h-6 text-[#B4AEFF] group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                </div>
+                <p class="font-bold text-gray-900 dark:text-white">ESP32 / NodeMCU</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Otak Utama & WiFi</p>
+            </div>
+            <div class="p-6 border border-gray-100 dark:border-gray-800 rounded-[2rem] bg-gray-50 dark:bg-white/5 hover:border-[#D2FF3A] transition-colors group">
+                <div class="w-12 h-12 bg-[#D2FF3A]/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#D2FF3A] transition-colors">
+                    <svg class="w-6 h-6 text-[#D2FF3A] group-hover:text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                </div>
+                <p class="font-bold text-gray-900 dark:text-white">Sensor FC-51</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Deteksi Ayunan (IR)</p>
+            </div>
+            <div class="p-6 border border-gray-100 dark:border-gray-800 rounded-[2rem] bg-gray-50 dark:bg-white/5 hover:border-[#8C84FF] transition-colors group">
+                <div class="w-12 h-12 bg-[#8C84FF]/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#8C84FF] transition-colors">
+                    <svg class="w-6 h-6 text-[#8C84FF] group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </div>
+                <p class="font-bold text-gray-900 dark:text-white">Bandul Matematis</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Objek Percobaan</p>
+            </div>
+            <div class="p-6 border border-gray-100 dark:border-gray-800 rounded-[2rem] bg-gray-50 dark:bg-white/5 hover:border-gray-400 transition-colors group">
+                <div class="w-12 h-12 bg-gray-200 dark:bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gray-400 transition-colors">
+                    <svg class="w-6 h-6 text-gray-500 dark:text-gray-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                </div>
+                <p class="font-bold text-gray-900 dark:text-white">Kabel Jumper</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Koneksi Rangkaian</p>
+            </div>
+        </div>
     </div>
 </div>
 
