@@ -196,53 +196,40 @@
         <div class="absolute bottom-0 left-0 w-full h-32 opacity-10 dark:opacity-5" style="background-image: repeating-linear-gradient(45deg, #888 25%, transparent 25%, transparent 75%, #888 75%, #888), repeating-linear-gradient(45deg, #888 25%, transparent 25%, transparent 75%, #888 75%, #888); background-position: 0 0, 10px 10px; background-size: 20px 20px;"></div>
     </div>
 
-    <!-- Perbandingan Antar Tali -->
+    <!-- Riwayat Eksperimen Murid -->
     <div class="lg:col-span-3 bg-white dark:bg-[#1A1C1E] border border-gray-200 dark:border-[#2A2D30] rounded-[2rem] shadow-lg p-6 mb-2 transition-colors duration-300">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                 <svg class="w-6 h-6 text-[#B4AEFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                Perbandingan Antar Tali
+                Riwayat Eksperimen Anda
             </h2>
-            <a href="{{ route('history') }}" class="text-sm font-bold text-[#8C84FF] hover:text-[#B4AEFF] transition">
-                Lihat Semua Riwayat &rarr;
-            </a>
         </div>
 
         <div class="overflow-x-auto">
             <table class="w-full text-left">
                 <thead>
                     <tr class="border-b border-gray-100 dark:border-gray-800 text-gray-500 dark:text-gray-400 text-sm">
-                        <th class="py-4 px-4 font-semibold">Panjang Tali</th>
-                        <th class="py-4 px-4 text-center font-semibold">Waktu (10 Ayunan)</th>
-                        <th class="py-4 px-4 text-center font-semibold">Waktu Rata-rata</th>
-                        <th class="py-4 px-4 text-center font-semibold">Status</th>
+                        <th class="py-4 px-4 font-semibold">Waktu</th>
+                        <th class="py-4 px-4 font-semibold">Jumlah Ayunan</th>
+                        <th class="py-4 px-4 text-center font-semibold">Periode (s)</th>
+                        <th class="py-4 px-4 text-center font-semibold">Panjang Tali</th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-700 dark:text-gray-300">
+                    @forelse($historyData as $data)
                     <tr class="border-b border-gray-50 dark:border-gray-800/50 hover:bg-gray-50 dark:hover:bg-white/5 transition">
-                        <td class="py-4 px-4 font-bold">Tali A (20cm)</td>
-                        <td class="py-4 px-4 text-center">9.12 detik</td>
-                        <td class="py-4 px-4 text-center text-[#8C84FF] font-bold">0.91 s</td>
+                        <td class="py-4 px-4">{{ $data->created_at->format('d M Y, H:i:s') }}</td>
+                        <td class="py-4 px-4 text-center font-bold">{{ $data->jumlah_ayunan }}</td>
+                        <td class="py-4 px-4 text-center text-[#8C84FF] font-bold">{{ number_format($data->periode, 2) }} s</td>
                         <td class="py-4 px-4 text-center">
-                            <span class="px-3 py-1 bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 rounded-full text-xs font-bold">Stabil</span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 rounded-full text-xs font-bold">{{ $data->string_length }}</span>
                         </td>
                     </tr>
-                    <tr class="border-b border-gray-50 dark:border-gray-800/50 hover:bg-gray-50 dark:hover:bg-white/5 transition">
-                        <td class="py-4 px-4 font-bold">Tali B (30cm)</td>
-                        <td class="py-4 px-4 text-center">11.05 detik</td>
-                        <td class="py-4 px-4 text-center text-[#8C84FF] font-bold">1.10 s</td>
-                        <td class="py-4 px-4 text-center">
-                            <span class="px-3 py-1 bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 rounded-full text-xs font-bold">Stabil</span>
-                        </td>
+                    @empty
+                    <tr>
+                        <td colspan="4" class="py-8 text-center text-gray-500">Belum ada data eksperimen.</td>
                     </tr>
-                    <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition">
-                        <td class="py-4 px-4 font-bold">Tali C (40cm)</td>
-                        <td class="py-4 px-4 text-center">12.80 detik</td>
-                        <td class="py-4 px-4 text-center text-[#8C84FF] font-bold">1.28 s</td>
-                        <td class="py-4 px-4 text-center">
-                            <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-400 rounded-full text-xs font-bold">Variasi</span>
-                        </td>
-                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

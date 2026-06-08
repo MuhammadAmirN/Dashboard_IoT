@@ -39,10 +39,10 @@ class MuridController extends Controller
             }
         }
 
-        // Ringkasan per Tali (hanya milik murid)
-        $summary = SensorData::where('user_id', $userId)
-            ->selectRaw('string_length, AVG(periode) as avg_periode, SUM(jumlah_ayunan) as total_ayunan')
-            ->groupBy('string_length')
+        // Data Riwayat Eksperimen (10 terbaru)
+        $historyData = SensorData::where('user_id', $userId)
+            ->latest()
+            ->take(10)
             ->get();
 
         $status = 'Offline';
@@ -55,7 +55,7 @@ class MuridController extends Controller
             'chartData',
             'sensorLogs',
             'status',
-            'summary'
+            'historyData'
         ));
     }
 }
