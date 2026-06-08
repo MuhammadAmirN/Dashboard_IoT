@@ -1,42 +1,79 @@
-# WebIoT Project
+# WebIoT Dashboard
 
-Dashboard monitoring sensor untuk mendeteksi ayunan secara realtime.
+Sistem Pemantauan Alat Bandul Matematis berbasis Internet of Things (IoT). Web ini menyediakan antarmuka modern dan responsif untuk memantau pergerakan bandul (simpangan, periode, jumlah ayunan) secara *real-time*, sekaligus mencatat seluruh histori untuk dianalisis lebih lanjut.
 
-## Stack Teknologi
-- **Framework:** Laravel 11
-- **Styling:** Vite & TailwindCSS
-- **Database:** MySQL
-- **Integrasi:** API untuk data sensor ESP32
+## Fitur Utama
+1. **Live Dashboard:** Memantau status koneksi alat, periode ayunan, dan visualisasi grafik secara dinamis.
+2. **Baca Data (Komparasi):** Fitur analisis tingkat lanjut yang memungkinkan Anda menumpuk 3 grafik rekaman bandul yang berbeda secara bersamaan untuk studi perbandingan.
+3. **Data Sensor & Export PDF:** Pencatatan seluruh hasil akhir percobaan yang dilengkapi dengan tabel berpaginasi, fitur pencarian, dan kemampuan ekspor ke PDF secara instan.
+4. **Dark/Light Mode Dinamis:** Tema antarmuka profesional yang akan otomatis beradaptasi dan bisa di-*toggle* sesuka hati.
+5. **100% Responsif:** Dapat diakses dan dioperasikan dengan nyaman baik di PC, Tablet, maupun *Smartphone*.
 
-## Flowchart Sistem
-```mermaid
-flowchart TD
-    A[Sensor Infrared FC-51] --> B[ESP32 / NodeMCU]
-    B --> C[Koneksi WiFi]
-    C --> D[Laravel API /api/sensor]
-    D --> E[Controller Laravel]
-    E --> F[(Database MySQL)]
-    F --> G[Dashboard Monitoring]
-    G --> H[Grafik Realtime Chart.js]
-    G --> I[Status Sensor Online/Offline]
-    G --> J[Riwayat Data Sensor]
+---
+
+## Panduan Instalasi untuk Tim (Developer)
+
+Ikuti langkah-langkah di bawah ini untuk menjalankan *project* ini di komputer lokal Anda:
+
+### 1. Clone Repositori
+Pastikan Anda sudah meng-*install* Git, PHP, Composer, dan Node.js.
+```bash
+git clone https://github.com/MuhammadAmirN/Dashboard_IoT.git
+cd Dashboard_IoT
 ```
 
-## Persiapan Development
-1. Clone repositori:
-   `git clone https://github.com/MuhammadAmirN/Dashboard_IoT.git`
-2. Install dependensi:
-   `composer install`
-   `npm install`
-3. Salin `.env.example` ke `.env` dan atur konfigurasi database.
-4. Jalankan migrasi:
-   `php artisan migrate`
-5. Jalankan server:
-   `php artisan serve` & `npm run dev`
+### 2. Install Dependencies
+Sistem membutuhkan pustaka dari PHP dan juga Node.js (termasuk *DomPDF* untuk fitur Export PDF).
+```bash
+composer install
+npm install
+```
+*(Tidak perlu menginstal aplikasi eksternal apa pun untuk fitur PDF, karena `dompdf` berjalan murni di atas PHP dan otomatis terpasang melalui perintah di atas).*
 
-## Pengiriman Data Sensor (API)
-Gunakan Thunderclient atau Postman untuk testing:
-**POST** `https://webiot-production.up.railway.app/api/sensors`
+### 3. Konfigurasi Environment
+Gandakan file `.env.example` menjadi `.env`.
+- Di Windows: `copy .env.example .env`
+- Di Mac/Linux: `cp .env.example .env`
 
-## Lisensi
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Setelah itu, buka file `.env` di editor kode Anda, dan atur bagian database sesuai dengan database lokal Anda (misalnya MySQL atau SQLite).
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nama_database_anda
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 4. Generate Application Key
+```bash
+php artisan key:generate
+```
+
+### 5. Jalankan Migrasi Database
+Perintah ini akan membuat struktur tabel yang dibutuhkan (seperti `sensor_data` dan `sensor_logs`).
+```bash
+php artisan migrate
+```
+
+### 6. Generate Data Dummy (Opsional tapi Direkomendasikan)
+Agar Anda bisa langsung mencoba fitur grafik **Baca Data** dan melihat tampilan tabel **Data Sensor** yang terisi penuh tanpa perlu menyalakan alat fisik, silakan jalankan seeder berikut:
+```bash
+php artisan db:seed --class=DummySensorSeeder
+```
+*Seeder ini akan otomatis menyuntikkan simulasi rumus gelombang bandul teredam yang sangat realistis.*
+
+### 7. Jalankan Server Lokal
+Untuk menjalankan sistem secara penuh, buka **dua jendela terminal** secara bersamaan.
+
+Di terminal pertama, kompilasi aset Tailwind CSS:
+```bash
+npm run dev
+```
+
+Di terminal kedua, jalankan server Laravel:
+```bash
+php artisan serve
+```
+
+Selesai! Buka browser Anda dan akses: **`http://localhost:8000`**

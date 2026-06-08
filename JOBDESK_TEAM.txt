@@ -12,25 +12,34 @@ Anggota:
 3. Rafly
 
 
-ATURAN WAJIB SEBELUM MULAI
+ATURAN WAJIB SEBELUM MULAI (SANGAT PENTING!)
 
-1. Ambil update terbaru dari branch utama.
+1. Ambil update terbaru dari branch utama (development/main).
+   🔥 WAJIB PULL DARI DEVELOPMENT SEBELUM MULAI! 🔥
 
-   git pull origin main
+   git pull origin development
 
 2. Buat branch sendiri sesuai nama dan tugas.
+   🔥 WAJIB: GUNAKAN BRANCH YANG BERBEDA UNTUK SETIAP TUGAS BARU! JANGAN PAKAI BRANCH LAMA! 🔥
 
    git checkout -b fitur/nama-tugas-nama
 
-3. Jangan push langsung ke main.
+3. 🚨 DATABASE & DATA DUMMY (PENTING!):
+   - GUNAKAN DB LOKAL MASING-MASING SAAT DEVELOP.
+   - STRUKTUR DB WAJIB MENGIKUTI MIGRATION (AGAR SINKRON DENGAN PRODUKSI RAILWAY).
+   - 🚫 SEEDER DUMMY SUDAH DIHAPUS. Tidak boleh lagi mengisi data lewat seeder.
+   - ✅ WAJIB GUNAKAN API (THUNDER CLIENT / POSTMAN) untuk memasukkan data.
+   - 💡 PENJELASAN: Data "Bukit Lembah" (Grafik Gelombang) yang sebelumnya pakai seeder, sekarang harus dikirim lewat API. Caranya adalah dengan menembak endpoint POST API secara berurutan sesuai rumus gelombang. Ini dilakukan agar kita bisa sekalian mengetes apakah API sensor sudah benar-benar kuat menangani data masuk.
 
-4. Setelah selesai, commit dan push branch masing-masing.
+4. Jangan push langsung ke main.
+
+5. Setelah selesai, commit dan push branch masing-masing.
 
    git add .
    git commit -m "menambahkan tugas nama"
    git push origin fitur/nama-tugas-nama
 
-5. Setelah push, buat Pull Request atau minta ketua project merge ke main.
+6. Setelah push, buat Pull Request atau minta ketua project merge ke development.
 
 
 CONTOH NAMA BRANCH
@@ -77,12 +86,12 @@ JOBDESK ZULFA
 Fokus:
 Tampilan dashboard dan UI/UX halaman WebIoT.
 
-Tugas (Tugas 1):
-1. Merapikan tampilan card jumlah ayunan, periode, dan status sensor.
-2. Merapikan tabel riwayat data sensor.
-3. Menyesuaikan warna, spacing, dan ukuran teks agar lebih mudah dibaca.
-4. Membuat tampilan responsive untuk layar kecil.
-5. Menambahkan empty state jika data sensor belum ada.
+Tugas (Tugas 1) [DONE]:
+1. [DONE] Merapikan tampilan card jumlah ayunan, periode, dan status sensor.
+2. [DONE] Merapikan tabel riwayat data sensor.
+3. [DONE] Menyesuaikan warna, spacing, dan ukuran teks agar lebih mudah dibaca.
+4. [DONE] Membuat tampilan responsive untuk layar kecil.
+5. [DONE] Menambahkan empty state jika data sensor belum ada.
 
 File/folder yang boleh dikerjakan:
 - resources/views/dashboard.blade.php
@@ -97,7 +106,7 @@ Contoh commit:
 git commit -m "memperbaiki tampilan dashboard zulfa"
 
 
-JOBDESK RAFLY
+JOBDESK RAFLY (PRIORITAS!)
 
 Fokus:
 API sensor, validasi data, dokumentasi endpoint, dan sistem keamanan akses.
@@ -111,8 +120,12 @@ Tugas:
 3. Membuat response JSON yang lebih lengkap.
 4. Menambahkan endpoint GET sederhana untuk melihat data sensor terbaru jika diperlukan.
 5. Membuat dokumentasi endpoint API.
-6. [NEW] Membuat fitur Login & Register agar dashboard tidak bisa diakses sembarang orang (Authentication).
+6. 🚨 [URGENT] MEMBUAT FITUR LOGIN & REGISTER DENGAN ROLE:
+   - ROLE ADMIN: Untuk Dosen (Monitoring & Manajemen Data)
+   - ROLE USER: Untuk Mahasiswa (Hanya Monitoring)
+   Pastikan dashboard Admin dan User terpisah secara akses!
 7. [RESEARCH] Implementasi Real-time Update menggunakan WebSocket (Pusher atau Laravel Reverb) agar dashboard update otomatis tanpa perlu refresh halaman (Saran Dosen).
+8. ⚠️ GENERATE DATA DUMMY WAJIB VIA API (THUNDER CLIENT)! JANGAN PAKAI SEEDER!
 
 File/folder yang boleh dikerjakan:
 - routes/api.php
@@ -121,11 +134,11 @@ File/folder yang boleh dikerjakan:
 - resources/views/auth/
 - docs/api-example.txt
 
-Branch yang disarankan:
-git checkout -b rafly-api-sensor
+Branch yang disarankan (WAJIB PAKAI BRANCH BARU!):
+git checkout -b rafly-auth-roles
 
 Contoh commit:
-git commit -m "menambahkan validasi api sensor rafly"
+git commit -m "menambahkan sistem login admin dan user rafly"
 
 
 FOLDER DOKUMENTASI YANG BOLEH DIBUAT
@@ -155,10 +168,12 @@ ALUR KERJA SETIAP ANGGOTA
    cd C:\.s6peminatan\webiot
 
 2. Ambil update terbaru.
+   🔥 WAJIB PULL DARI DEVELOPMENT SEBELUM MULAI! 🔥
 
-   git pull origin main
+   git pull origin development
 
 3. Buat branch sesuai tugas.
+   🚨 PENTING: GUNAKAN BRANCH BARU UNTUK SETIAP TUGAS BERBEDA! 🚨
 
    git checkout -b fitur/nama-tugas-nama
 
@@ -185,3 +200,6 @@ Tanyakan dulu ke anggota yang mengerjakan file tersebut.
 
 Jangan mengubah file di luar jobdesk kecuali sudah disepakati.
 Tujuannya agar Git graph rapi dan perubahan setiap orang terlihat jelas.
+
+⚠️ WAJIB: SETIAP INGIN MENGERJAKAN TUGAS BARU, SELALU GUNAKAN BRANCH YANG BERBEDA! JANGAN MENUMPUK DI SATU BRANCH! ⚠️
+⚠️ WAJIB: GENERATE DATA DUMMY LEWAT API (THUNDER CLIENT). DATA GRAFIK "BUKIT LEMBAH" JUGA HARUS DIINPUT VIA API UNTUK MEMASTIKAN VALIDASI DAN ALUR DATA BERJALAN SEMPURNA! ⚠️
