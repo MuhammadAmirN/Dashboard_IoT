@@ -24,11 +24,12 @@ ATURAN WAJIB SEBELUM MULAI (SANGAT PENTING!)
 
    git checkout -b fitur/nama-tugas-nama
 
-3. 🚨 DATABASE & DATA DUMMY:
+3. 🚨 DATABASE & DATA DUMMY (PENTING!):
    - GUNAKAN DB LOKAL MASING-MASING SAAT DEVELOP.
    - STRUKTUR DB WAJIB MENGIKUTI MIGRATION (AGAR SINKRON DENGAN PRODUKSI RAILWAY).
-   - 🚫 DILARANG KERAS PAKAI SEEDER UNTUK DATA DUMMY! (FILE SEEDER SUDAH DIHAPUS).
-   - ✅ WAJIB GUNAKAN API (THUNDER CLIENT / POSTMAN) UNTUK GENERATE DATA DUMMY KE ENDPOINT API YANG SUDAH ADA.
+   - 🚫 SEEDER DUMMY SUDAH DIHAPUS. Tidak boleh lagi mengisi data lewat seeder.
+   - ✅ WAJIB GUNAKAN API (THUNDER CLIENT / POSTMAN) untuk memasukkan data.
+   - 💡 PENJELASAN: Data "Bukit Lembah" (Grafik Gelombang) yang sebelumnya pakai seeder, sekarang harus dikirim lewat API. Caranya adalah dengan menembak endpoint POST API secara berurutan sesuai rumus gelombang. Ini dilakukan agar kita bisa sekalian mengetes apakah API sensor sudah benar-benar kuat menangani data masuk.
 
 4. Jangan push langsung ke main.
 
@@ -201,4 +202,4 @@ Jangan mengubah file di luar jobdesk kecuali sudah disepakati.
 Tujuannya agar Git graph rapi dan perubahan setiap orang terlihat jelas.
 
 ⚠️ WAJIB: SETIAP INGIN MENGERJAKAN TUGAS BARU, SELALU GUNAKAN BRANCH YANG BERBEDA! JANGAN MENUMPUK DI SATU BRANCH! ⚠️
-⚠️ WAJIB: GENERATE DATA DUMMY LEWAT API (THUNDER CLIENT), SEEDER SUDAH DIHAPUS UNTUK MEMASTIKAN API BERJALAN DENGAN BENAR! ⚠️
+⚠️ WAJIB: GENERATE DATA DUMMY LEWAT API (THUNDER CLIENT). DATA GRAFIK "BUKIT LEMBAH" JUGA HARUS DIINPUT VIA API UNTUK MEMASTIKAN VALIDASI DAN ALUR DATA BERJALAN SEMPURNA! ⚠️
