@@ -14,11 +14,12 @@ Anggota:
 
 ATURAN WAJIB SEBELUM MULAI
 
-1. Ambil update terbaru dari branch utama.
+1. Ambil update terbaru dari branch utama (development/main).
 
-   git pull origin main
+   git pull origin development
 
 2. Buat branch sendiri sesuai nama dan tugas.
+   WAJIB: Gunakan branch yang berbeda untuk setiap tugas baru agar tidak bentrok.
 
    git checkout -b fitur/nama-tugas-nama
 
@@ -30,7 +31,7 @@ ATURAN WAJIB SEBELUM MULAI
    git commit -m "menambahkan tugas nama"
    git push origin fitur/nama-tugas-nama
 
-5. Setelah push, buat Pull Request atau minta ketua project merge ke main.
+5. Setelah push, buat Pull Request atau minta ketua project merge ke development.
 
 
 CONTOH NAMA BRANCH
@@ -77,12 +78,12 @@ JOBDESK ZULFA
 Fokus:
 Tampilan dashboard dan UI/UX halaman WebIoT.
 
-Tugas (Tugas 1):
-1. Merapikan tampilan card jumlah ayunan, periode, dan status sensor.
-2. Merapikan tabel riwayat data sensor.
-3. Menyesuaikan warna, spacing, dan ukuran teks agar lebih mudah dibaca.
-4. Membuat tampilan responsive untuk layar kecil.
-5. Menambahkan empty state jika data sensor belum ada.
+Tugas (Tugas 1) [DONE]:
+1. [DONE] Merapikan tampilan card jumlah ayunan, periode, dan status sensor.
+2. [DONE] Merapikan tabel riwayat data sensor.
+3. [DONE] Menyesuaikan warna, spacing, dan ukuran teks agar lebih mudah dibaca.
+4. [DONE] Membuat tampilan responsive untuk layar kecil.
+5. [DONE] Menambahkan empty state jika data sensor belum ada.
 
 File/folder yang boleh dikerjakan:
 - resources/views/dashboard.blade.php
@@ -156,9 +157,10 @@ ALUR KERJA SETIAP ANGGOTA
 
 2. Ambil update terbaru.
 
-   git pull origin main
+   git pull origin development
 
 3. Buat branch sesuai tugas.
+   PENTING: Gunakan branch baru untuk setiap tugas berbeda (Jangan pakai branch lama).
 
    git checkout -b fitur/nama-tugas-nama
 
@@ -185,3 +187,5 @@ Tanyakan dulu ke anggota yang mengerjakan file tersebut.
 
 Jangan mengubah file di luar jobdesk kecuali sudah disepakati.
 Tujuannya agar Git graph rapi dan perubahan setiap orang terlihat jelas.
+
+WAJIB: Setiap ingin mengerjakan tugas baru, usahakan SELALU menggunakan branch yang berbeda agar tidak terjadi penumpukan kode yang sulit digabung.
