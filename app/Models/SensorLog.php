@@ -13,6 +13,12 @@ class SensorLog extends Model
         'session_id',
         'posisi_sensor',
         'simpangan',
-        'waktu_ms'
+        'waktu_ms',
+        'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
