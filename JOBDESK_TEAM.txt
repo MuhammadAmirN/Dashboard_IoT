@@ -12,14 +12,14 @@ Anggota:
 3. Rafly
 
 
-ATURAN WAJIB SEBELUM MULAI
+ATURAN WAJIB SEBELUM MULAI (PENTING!)
 
 1. Ambil update terbaru dari branch utama (development/main).
 
    git pull origin development
 
 2. Buat branch sendiri sesuai nama dan tugas.
-   WAJIB: Gunakan branch yang berbeda untuk setiap tugas baru agar tidak bentrok.
+   🔥 WAJIB: GUNAKAN BRANCH YANG BERBEDA UNTUK SETIAP TUGAS BARU! JANGAN PAKAI BRANCH LAMA! 🔥
 
    git checkout -b fitur/nama-tugas-nama
 
@@ -98,7 +98,7 @@ Contoh commit:
 git commit -m "memperbaiki tampilan dashboard zulfa"
 
 
-JOBDESK RAFLY
+JOBDESK RAFLY (PRIORITAS!)
 
 Fokus:
 API sensor, validasi data, dokumentasi endpoint, dan sistem keamanan akses.
@@ -112,7 +112,10 @@ Tugas:
 3. Membuat response JSON yang lebih lengkap.
 4. Menambahkan endpoint GET sederhana untuk melihat data sensor terbaru jika diperlukan.
 5. Membuat dokumentasi endpoint API.
-6. [NEW] Membuat fitur Login & Register agar dashboard tidak bisa diakses sembarang orang (Authentication).
+6. 🚨 [URGENT] MEMBUAT FITUR LOGIN & REGISTER DENGAN ROLE:
+   - ROLE ADMIN: Untuk Dosen (Monitoring & Manajemen Data)
+   - ROLE USER: Untuk Mahasiswa (Hanya Monitoring)
+   Pastikan dashboard Admin dan User terpisah secara akses!
 7. [RESEARCH] Implementasi Real-time Update menggunakan WebSocket (Pusher atau Laravel Reverb) agar dashboard update otomatis tanpa perlu refresh halaman (Saran Dosen).
 
 File/folder yang boleh dikerjakan:
@@ -122,11 +125,11 @@ File/folder yang boleh dikerjakan:
 - resources/views/auth/
 - docs/api-example.txt
 
-Branch yang disarankan:
-git checkout -b rafly-api-sensor
+Branch yang disarankan (WAJIB PAKAI BRANCH BARU!):
+git checkout -b rafly-auth-roles
 
 Contoh commit:
-git commit -m "menambahkan validasi api sensor rafly"
+git commit -m "menambahkan sistem login admin dan user rafly"
 
 
 FOLDER DOKUMENTASI YANG BOLEH DIBUAT
@@ -156,11 +159,12 @@ ALUR KERJA SETIAP ANGGOTA
    cd C:\.s6peminatan\webiot
 
 2. Ambil update terbaru.
+   🔥 WAJIB PULL DARI DEVELOPMENT SEBELUM MULAI! 🔥
 
    git pull origin development
 
 3. Buat branch sesuai tugas.
-   PENTING: Gunakan branch baru untuk setiap tugas berbeda (Jangan pakai branch lama).
+   🚨 PENTING: GUNAKAN BRANCH BARU UNTUK SETIAP TUGAS BERBEDA! 🚨
 
    git checkout -b fitur/nama-tugas-nama
 
@@ -188,4 +192,4 @@ Tanyakan dulu ke anggota yang mengerjakan file tersebut.
 Jangan mengubah file di luar jobdesk kecuali sudah disepakati.
 Tujuannya agar Git graph rapi dan perubahan setiap orang terlihat jelas.
 
-WAJIB: Setiap ingin mengerjakan tugas baru, usahakan SELALU menggunakan branch yang berbeda agar tidak terjadi penumpukan kode yang sulit digabung.
+⚠️ WAJIB: SETIAP INGIN MENGERJAKAN TUGAS BARU, SELALU GUNAKAN BRANCH YANG BERBEDA! JANGAN MENUMPUK DI SATU BRANCH! ⚠️
