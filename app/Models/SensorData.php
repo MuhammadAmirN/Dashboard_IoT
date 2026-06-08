@@ -12,5 +12,11 @@ class SensorData extends Model
         'periode',
         'status_sensor',
         'string_length',
+        'user_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
