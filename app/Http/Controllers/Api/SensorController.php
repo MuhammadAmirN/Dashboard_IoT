@@ -8,13 +8,22 @@ use App\Models\SensorData;
 
 class SensorController extends Controller
 {
+    public function latest()
+{
+    $latest = SensorData::latest()->first();
+
+    return response()->json([
+        'success' => true,
+        'data' => $latest
+    ]);
+}
     public function store(Request $request)
     {
         $request->validate([
-            'jumlah_ayunan' => 'required',
-            'periode' => 'required',
-            'status_sensor' => 'required',
-        ]);
+    'jumlah_ayunan' => 'required|integer',
+    'periode' => 'required|numeric',
+    'status_sensor' => 'required|string',
+]);
 
         $sensorData = SensorData::create([
             'jumlah_ayunan' => $request->jumlah_ayunan,
@@ -57,8 +66,10 @@ class SensorController extends Controller
         }
 
         return response()->json([
-            'message' => 'Data sensor berhasil disimpan',
-            'session_id' => $sessionId
-        ], 200);
+    'success' => true,
+    'message' => 'Data sensor berhasil disimpan',
+    'session_id' => $sessionId,
+    'data' => $sensorData
+], 201);
     }
 }

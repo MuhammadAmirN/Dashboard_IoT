@@ -3,41 +3,89 @@ CONTOH API WEBIOT
 Penanggung jawab utama:
 Rafly & Amir (Testing)
 
-Endpoint untuk mengirim data sensor:
+=========================================
 
+1. KIRIM DATA SENSOR
+   =========================================
+
+Endpoint:
 POST https://webiot-production.up.railway.app/api/sensors
 
 Header:
 Content-Type: application/json
 
 Body JSON:
+
 {
-  "jumlah_ayunan": 10,
-  "periode": 2.3,
-  "status_sensor": "Online"
+"jumlah_ayunan": 10,
+"periode": 2.3,
+"status_sensor": "Online"
 }
 
-Contoh Request Testing menggunakan cURL:
-curl -X POST https://webiot-production.up.railway.app/api/sensors \
-     -H "Content-Type: application/json" \
-     -d "{\"jumlah_ayunan\": 15, \"periode\": 1.8, \"status_sensor\": \"Testing\"}"
+Validasi:
 
-Response sukses:
+* jumlah_ayunan : required | integer
+* periode : required | numeric
+* status_sensor : required | string
+
+Contoh Request (cURL):
+
+curl -X POST https://webiot-production.up.railway.app/api/sensors 
+-H "Content-Type: application/json" 
+-d "{"jumlah_ayunan":15,"periode":1.8,"status_sensor":"Testing"}"
+
+Response Berhasil (201):
+
 {
-  "message": "Data sensor berhasil disimpan"
+"success": true,
+"message": "Data sensor berhasil disimpan",
+"session_id": "OfiQxo96oC",
+"data": {
+"jumlah_ayunan": 15,
+"periode": 1.8,
+"status_sensor": "Testing",
+"string_length": "Default"
+}
 }
 
-Contoh Response Error (Validasi Gagal):
+Response Gagal Validasi (422):
+
 {
-  "message": "The jumlah ayunan field is required.",
-  "errors": {
-    "jumlah_ayunan": [
-      "The jumlah ayunan field is required."
-    ]
-  }
+"message": "The jumlah ayunan field is required.",
+"errors": {
+"jumlah_ayunan": [
+"The jumlah ayunan field is required."
+]
+}
 }
 
-Catatan:
-Gunakan URL production jika ingin data tampil di website Railway.
-Jika menggunakan localhost, gunakan: http://localhost:8000/api/sensors
-Data yang dikirim harus sesuai dengan tipe data yang diharapkan (integer untuk jumlah_ayunan, float untuk periode).
+=========================================
+2. AMBIL DATA SENSOR TERBARU
+============================
+
+Endpoint:
+
+GET https://webiot-production.up.railway.app/api/sensors/latest
+
+Contoh Response:
+
+{
+"success": true,
+"data": {
+"jumlah_ayunan": 15,
+"periode": 1.8,
+"status_sensor": "Testing",
+"string_length": "Default"
+}
+}
+
+=========================================
+CATATAN
+=======
+
+* Gunakan URL production jika ingin data tampil di website Railway.
+* Jika menggunakan localhost:
+  http://localhost:8000/api/sensors
+* Data harus sesuai tipe yang ditentukan.
+* Pengujian API wajib menggunakan Thunder Client atau Postman.
+* Tidak diperbolehkan menggunakan Seeder untuk generate data dummy.
