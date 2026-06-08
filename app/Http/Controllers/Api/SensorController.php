@@ -57,8 +57,10 @@ class SensorController extends Controller
         }
 
         return response()->json([
-            'message' => 'Data sensor berhasil disimpan',
-            'session_id' => $sessionId
-        ], 200);
+    'success' => true,
+    'message' => 'Data sensor berhasil disimpan',
+    'session_id' => $sessionId,
+    'data' => $sensorData
+], 201);
     }
 }
