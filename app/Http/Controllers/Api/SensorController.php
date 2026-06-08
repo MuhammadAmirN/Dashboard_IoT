@@ -8,6 +8,15 @@ use App\Models\SensorData;
 
 class SensorController extends Controller
 {
+    public function latest()
+{
+    $latest = SensorData::latest()->first();
+
+    return response()->json([
+        'success' => true,
+        'data' => $latest
+    ]);
+}
     public function store(Request $request)
     {
         $request->validate([
