@@ -56,17 +56,25 @@ Perintah ini akan membuat struktur tabel yang dibutuhkan (seperti `sensor_data` 
 php artisan migrate
 ```
 
-### 6. Generate Data Dummy (Opsional tapi Direkomendasikan)
-Agar Anda bisa langsung mencoba fitur grafik **Baca Data** dan melihat tampilan tabel **Data Sensor** yang terisi penuh tanpa perlu menyalakan alat fisik, silakan jalankan seeder berikut:
+### 6. Generate Data Dummy & Akun (Penting)
+Agar Anda bisa langsung masuk (login), mencoba fitur grafik **Baca Data**, dan melihat tabel **Data Sensor** tanpa perlu menyambungkan alat fisik, silakan jalankan seeder berikut:
 ```bash
-php artisan db:seed --class=DummySensorSeeder
+php artisan migrate:fresh --seed
 ```
-*Seeder ini akan otomatis menyuntikkan simulasi rumus gelombang bandul teredam yang sangat realistis.*
+*Seeder ini otomatis membuatkan akun Guru dan 5 akun Murid, beserta ratusan baris data eksperimen (simulasi grafik bandul) untuk masing-masing.*
+
+**Akun Default untuk Login:**
+- **Akun Guru:**
+  - Email: `guru@guru.com`
+  - Password: `password`
+- **Akun Murid 1-5 (contoh murid 1):**
+  - Email: `murid1@murid.com`
+  - Password: `11223344`
 
 ### 7. Jalankan Server Lokal
-Untuk menjalankan sistem secara penuh, buka **dua jendela terminal** secara bersamaan.
+Untuk menjalankan sistem secara penuh, buka **dua jendela terminal** secara bersamaan di dalam folder proyek.
 
-Di terminal pertama, kompilasi aset Tailwind CSS:
+Di terminal pertama, kompilasi aset Tailwind CSS (wajib agar styling dan *dark mode* berfungsi):
 ```bash
 npm run dev
 ```
