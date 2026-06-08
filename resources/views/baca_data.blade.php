@@ -94,10 +94,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     borderColor: '#b4dc1f', // Dark: #D2FF3A
                     backgroundColor: gradient1,
                     fill: true,
-                    tension: 0.4,
-                    borderWidth: 3,
-                    pointRadius: 0, // Sembunyikan titik agar lebih bersih jika data banyak
-                    pointHoverRadius: 6,
+                    tension: 0.3,
+                    borderWidth: 1.5,
+                    pointRadius: 0,
+                    pointHoverRadius: 4,
                 },
                 {
                     label: 'Data 2',
@@ -105,10 +105,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     borderColor: '#8C84FF', // Dark: #B4AEFF
                     backgroundColor: gradient2,
                     fill: true,
-                    tension: 0.4,
-                    borderWidth: 3,
+                    tension: 0.3,
+                    borderWidth: 1.5,
                     pointRadius: 0,
-                    pointHoverRadius: 6,
+                    pointHoverRadius: 4,
                 },
                 {
                     label: 'Data 3',
@@ -116,10 +116,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     borderColor: '#f97316', // Dark: orange-500
                     backgroundColor: gradient3,
                     fill: true,
-                    tension: 0.4,
-                    borderWidth: 3,
+                    tension: 0.3,
+                    borderWidth: 1.5,
                     pointRadius: 0,
-                    pointHoverRadius: 6,
+                    pointHoverRadius: 4,
                 }
             ]
         },
@@ -146,6 +146,8 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             scales: {
                 y: {
+                    min: -15,
+                    max: 15,
                     ticks: {
                         color: '#888',
                         font: { size: 12, weight: 'bold' }
@@ -235,18 +237,6 @@ document.addEventListener("DOMContentLoaded", function () {
         allLabels = [[], [], []];
         compareChart.data.labels = [];
         compareChart.data.datasets[0].data = [];
-        compareChart.data.datasets[0].label = "Data 1";
-        compareChart.data.datasets[1].data = [];
-        compareChart.data.datasets[1].label = "Data 2";
-        compareChart.data.datasets[2].data = [];
-        compareChart.data.datasets[2].label = "Data 3";
-        compareChart.update();
-    });
-});
-</script>
-
-@endsection
-data.datasets[0].data = [];
         compareChart.data.datasets[0].label = "Data 1";
         compareChart.data.datasets[1].data = [];
         compareChart.data.datasets[1].label = "Data 2";
