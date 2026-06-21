@@ -85,3 +85,13 @@ php artisan serve
 ```
 
 Selesai! Buka browser Anda dan akses: **`http://localhost:8000`**
+
+## Screenshot Tampilan
+
+Beberapa tangkapan layar tampilan terbaru ada di folder [`Screenshot/`](Screenshot/):
+
+- `login.png`
+- `admin_dash.png`
+- `admin_dash2.png`
+- `user_dash.png`
+- `user_dash2.png`
